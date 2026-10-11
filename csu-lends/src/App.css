@@ -1,0 +1,55 @@
+:root {
+  /* Font */
+  --font-family: Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Font colors */
+  --primary-font-color: #12202e; /* headlines, titles, item names */
+  --text-color: #12202e; /* normal text */
+  --muted-font-color: #667385; /* descriptions, labels, helper text */
+  --placeholder-color: #9aa5b3; /* placeholder text in inputs */
+  --link-color: #2557e8; /* links, "Rate Leo", active tab label */
+  --price-color: #17825a; /* "Free" and price highlights */
+  --on-primary-color: #ffffff; /* text on blue buttons and dark bars */
+  --on-accent-color: #12202e; /* text on lime buttons */
+
+  /* Brand colors */
+  --ink-color: #12202e; /* dark buttons, nav, fee bar */
+  --primary-color: #2557e8; /* main buttons */
+  --accent-color: #d8f05a; /* logo, Post item button, fee total */
+
+  /* Backgrounds */
+  --canvas-color: #e6ebf1; /* page behind the phone screens */
+  --primary-background-color: #f6f8fa; /* app background */
+  --background-color: #ffffff; /* cards, inputs, tab bar */
+  --surface-color: #eef1f5; /* inactive buttons, "Returned" label */
+  --toggle-background-color: #e9edf2; /* Borrowing / Lending switch */
+
+  /* Borders */
+  --border-color: #e3e8ee;
+  --dashed-border-color: #b9c4d2; /* photo upload box */
+
+  /* Status labels */
+  --success-color: #17825a; /* Available, Accepted */
+  --success-background: #ddf4ea;
+  --warning-color: #a8690f; /* Waiting for reply */
+  --warning-background: #fcefd0;
+  --neutral-color: #667385; /* Borrowed, Returned */
+  --neutral-background: #eef1f5;
+
+  /* Item picture backgrounds */
+  --tint-blue: #dce6ff;
+  --tint-lime: #eef8c4;
+  --tint-peach: #ffe6d6;
+  --tint-purple: #e4ddfb;
+}
+* {
+  margin: 0;
+  font-family:
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+
+  background-color: var(--primary-background-color);
+}
