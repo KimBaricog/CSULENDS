@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import useProfile from "../hooks/useProfile";
+import useProfile from "../hooks/Useprofile";
 
 export default function AdminRoute() {
   const { profile, loading } = useProfile();
