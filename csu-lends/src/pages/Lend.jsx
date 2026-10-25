@@ -14,7 +14,7 @@ import {
   MAX_PHOTO_MB,
   PHOTO_TYPES,
   ITEM_STATUS,
-} from "../lib/itemOptions";
+} from "../lib/Itemoptions";
 import "./style/lend.css";
 
 const EXTENSIONS = {
