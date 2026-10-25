@@ -14,7 +14,9 @@ function Header() {
   return (
     <header className="header-nav">
       <Link to="/" className="header-brand">
-        <span className="header-brand-dot" />
+        <span className="header-brand-dot">
+          <img src="/csu-icon.svg" alt="CSU icon" />
+        </span>
         CSULends
       </Link>
 

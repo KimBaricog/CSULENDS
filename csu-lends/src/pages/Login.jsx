@@ -86,7 +86,9 @@ export default function Login() {
     <div className="login-page">
       <header className="login-nav">
         <Link to="/" className="login-brand">
-          <span className="login-brand-dot" />
+          <span className="login-brand-dot">
+            <img src="/csu-icon.svg" alt="CSU icon" />
+          </span>
           CSULends
         </Link>
         <div className="login-nav-right">

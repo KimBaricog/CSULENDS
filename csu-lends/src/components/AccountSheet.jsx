@@ -21,7 +21,8 @@ export default function AccountSheet({ open, onClose }) {
   if (!open) return null;
 
   const user = session?.user;
-  const name = profile?.full_name || user?.user_metadata?.full_name || "Student";
+  const name =
+    profile?.full_name || user?.user_metadata?.full_name || "Student";
   const initial = name.trim()[0]?.toUpperCase() || "?";
 
   const handleLogout = async () => {
@@ -31,10 +32,20 @@ export default function AccountSheet({ open, onClose }) {
   };
 
   return (
-    <div className="account-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="account-sheet" role="dialog" aria-modal="true" aria-label="Account">
+    <div
+      className="account-overlay"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <div
+        className="account-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Account"
+      >
         <div className="account-user">
-          <span className="account-avatar" aria-hidden="true">{initial}</span>
+          <span className="account-avatar" aria-hidden="true">
+            {initial}
+          </span>
           <div>
             <strong>{name}</strong>
             <span>{user?.email}</span>
@@ -43,13 +54,23 @@ export default function AccountSheet({ open, onClose }) {
         </div>
 
         {profile?.is_admin && (
-          <Link to="/admin" className="account-item" onClick={onClose}>Admin review</Link>
+          <Link to="/admin" className="account-item" onClick={onClose}>
+            Admin review
+          </Link>
         )}
-        <Link to="/lend" className="account-item" onClick={onClose}>Your listings</Link>
-        <button type="button" className="account-item account-item--danger" onClick={handleLogout}>
+        <Link to="/lend" className="account-item" onClick={onClose}>
+          Your listings
+        </Link>
+        <button
+          type="button"
+          className="account-item account-item--danger"
+          onClick={handleLogout}
+        >
           Log out
         </button>
-        <button type="button" className="account-close" onClick={onClose}>Close</button>
+        <button type="button" className="account-close" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
 import "./style/appheader.css";
-import useProfile from "../hooks/useProfile";
+import useProfile from "../hooks/Useprofile";
 
 // Top bar for pages students see after logging in.
 // Props: searchValue and onSearchChange (the Browse page owns the search text).
@@ -43,7 +43,9 @@ export default function AppHeader({ searchValue = "", onSearchChange }) {
   return (
     <header className="app-header">
       <Link to="/browse" className="app-header-brand">
-        <span className="app-header-dot" />
+        <span className="app-header-dot">
+          <img src="/csu-icon.svg" alt="CSU icon" />
+        </span>
         CSULends
       </Link>
 
