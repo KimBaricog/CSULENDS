@@ -7,6 +7,7 @@ function CSULends_Logo() {
           alignItems: "center",
           gap: "10px",
           color: "var(--primary-font-color)",
+          backgroundColor: "transparent",
         }}
         className="logo_container"
       >
@@ -19,7 +20,15 @@ function CSULends_Logo() {
           }}
           className="yellow-box"
         ></div>
-        <p style={{ fontSize: "20px", fontWeight: "bold" }}>CSULends</p>
+        <p
+          style={{
+            fontSize: "30px",
+            fontWeight: "bold",
+            backgroundColor: "transparent",
+          }}
+        >
+          CSULends
+        </p>
       </div>
     </>
   );

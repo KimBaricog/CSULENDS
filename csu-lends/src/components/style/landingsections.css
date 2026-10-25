@@ -1,0 +1,421 @@
+/* Styles for the extra landing page sections.
+   Every class starts with "ls-" (landing sections). */
+
+.ls-section {
+  padding: 72px 56px;
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  color: var(--primary-font-color, #12202e);
+}
+
+.ls-section--band {
+  background: var(--background-color, #ffffff);
+  border-top: 1px solid var(--border-color, #e3e8ee);
+  border-bottom: 1px solid var(--border-color, #e3e8ee);
+}
+
+.ls-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ls-inner--narrow {
+  max-width: 780px;
+}
+
+/* ---------- Section headings ---------- */
+.ls-heading {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+.ls-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--primary-color, #2557e8);
+}
+
+.ls-heading h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.ls-heading p {
+  margin: 12px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- What you can borrow ---------- */
+.ls-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.ls-cat {
+  padding: 12px 12px 22px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 22px;
+  background: var(--background-color, #ffffff);
+}
+
+.ls-cat-thumb {
+  height: 140px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  color: #12202e;
+}
+
+.ls-cat-thumb svg {
+  width: 80px;
+  height: 80px;
+}
+
+.ls-cat h3 {
+  margin: 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ls-cat p {
+  margin: 6px 8px 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- Two ways to use it ---------- */
+.ls-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.ls-audience {
+  padding: 36px;
+  border-radius: 28px;
+  color: var(--primary-font-color, #12202e);
+}
+
+.ls-audience h3 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.ls-audience > p {
+  margin: 6px 0 22px;
+  font-size: 15px;
+  color: var(--muted-font-color, #667385);
+}
+
+.ls-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ls-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ls-tick {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--ink-color, #12202e);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---------- House rules ---------- */
+.ls-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.ls-rule {
+  padding: 22px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 22px;
+  background: var(--background-color, #ffffff);
+}
+
+.ls-rule-number {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-weight: 700;
+}
+
+.ls-rule h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ls-rule p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- FAQ ---------- */
+.ls-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ls-faq-item {
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 18px;
+  background: var(--primary-background-color, #f6f8fa);
+}
+
+.ls-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ls-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ls-faq-item summary::after {
+  content: "+";
+  flex: none;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--muted-font-color, #667385);
+}
+
+.ls-faq-item[open] summary::after {
+  content: "−";
+}
+
+.ls-faq-item p {
+  margin: 0;
+  padding: 0 22px 20px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted-font-color, #667385);
+}
+
+.ls-faq-item summary:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+  border-radius: 18px;
+}
+
+/* ---------- Call to action ---------- */
+.ls-cta {
+  margin: 72px 56px 0;
+  padding: 56px 32px;
+  border-radius: 32px;
+  background: var(--ink-color, #12202e);
+  color: #ffffff;
+  text-align: center;
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+}
+
+.ls-cta h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.ls-cta p {
+  margin: 10px 0 28px;
+  font-size: 17px;
+  color: #b9c4d2;
+}
+
+.ls-cta-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ls-cta-primary,
+.ls-cta-secondary {
+  height: 48px;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ls-cta-primary {
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+}
+
+.ls-cta-secondary {
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+}
+
+.ls-cta-primary:focus-visible,
+.ls-cta-secondary:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ---------- Footer ---------- */
+.ls-footer {
+  margin-top: 72px;
+  padding: 36px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-top: 1px solid var(--border-color, #e3e8ee);
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  color: var(--muted-font-color, #667385);
+}
+
+.ls-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--primary-font-color, #12202e);
+  text-decoration: none;
+}
+
+.ls-footer-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--accent-color, #d8f05a);
+}
+
+.ls-footer p {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+}
+
+.ls-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 14px;
+}
+
+.ls-footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ls-footer-links a:hover {
+  color: var(--primary-font-color, #12202e);
+}
+
+.ls-footer small {
+  font-size: 13px;
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 1000px) {
+  .ls-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .ls-section {
+    padding: 48px 20px;
+  }
+
+  .ls-two {
+    grid-template-columns: 1fr;
+  }
+
+  .ls-audience {
+    padding: 26px;
+  }
+
+  .ls-cta {
+    margin: 48px 20px 0;
+    padding: 40px 22px;
+  }
+
+  .ls-footer {
+    margin-top: 48px;
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ls-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}

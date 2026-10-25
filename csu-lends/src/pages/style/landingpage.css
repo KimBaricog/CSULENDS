@@ -1,29 +1,205 @@
-.landingpage-container {
-  margin: 20px;
+/* ---------- Page ---------- */
+.Landing-page {
+  min-height: 100vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
   flex-direction: column;
+  background: var(--primary-background-color, #f6f8fa);
+  color: var(--primary-font-color, #12202e);
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+}
+
+/* ---------- Hero layout: text on the left, Visual on the right ---------- */
+.Landing-split {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.Landing-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 0 40px 56px;
+}
+
+.text-area {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* ---------- Text content ---------- */
+.Landing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 22px;
+  padding: 6px 14px;
+  border-radius: 14px;
+  background: var(--success-background, #ddf4ea);
+  color: var(--success-color, #17825a);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.Landing-title {
+  margin: 0;
+  font-size: clamp(36px, 4.6vw, 66px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.Landing-lead {
+  max-width: 500px;
+  margin: 20px 0 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- Buttons ---------- */
+.Landing-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
-main {
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: flex-start;
+
+.Landing-btn {
+  box-sizing: border-box;
+  height: 46px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 10px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
 }
-main .img {
-  width: 100%;
-  height: 35vh;
+
+.Landing-btn--primary {
+  background: var(--primary-color, #2557e8);
+  color: var(--on-primary-color, #ffffff);
+  border: 1.5px solid var(--primary-color, #2557e8);
+}
+
+.Landing-btn--primary:hover {
+  filter: brightness(1.08);
+}
+
+.Landing-btn--outline {
+  background: var(--background-color, #ffffff);
+  color: var(--primary-font-color, #12202e);
+  border: 1.5px solid var(--primary-font-color, #12202e);
+}
+
+.Landing-btn:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+/* ---------- Trust points ---------- */
+.Landing-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+.Landing-check {
+  margin-right: 6px;
+  font-weight: 700;
+  color: var(--success-color, #17825a);
+}
+
+/* ---------- How it works strip ---------- */
+.Landing-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 56px 34px;
+}
+
+.Landing-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-color, #e3e8ee);
   border-radius: 20px;
+  background: var(--background-color, #ffffff);
 }
-main h1 {
-  line-height: 30px;
+
+.Landing-step-number {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-weight: 700;
 }
-main p {
-  line-height: 20px;
-  color: var(--muted-font-color);
+
+.Landing-step strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.Landing-step p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 900px) {
+  .Landing-split {
+    grid-template-columns: 1fr;
+  }
+
+  .Landing-form-side {
+    align-items: flex-start;
+    padding: 36px 20px 24px;
+  }
+
+  .Landing-title {
+    font-size: 30px;
+    letter-spacing: -0.03em;
+  }
+
+  .Landing-lead {
+    font-size: 16px;
+  }
+
+  .Landing-actions {
+    flex-direction: column;
+  }
+
+  .Landing-btn {
+    width: 100%;
+    height: 50px;
+  }
+
+  .Landing-steps {
+    grid-template-columns: 1fr;
+    padding: 0 20px 28px;
+  }
 }

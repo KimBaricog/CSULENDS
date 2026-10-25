@@ -1,0 +1,26 @@
+.Logbtn-container {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  background-color: transparent;
+}
+button {
+  width: 50%;
+  background-color: aqua;
+  font-weight: 700;
+  height: 6dvh;
+  cursor: pointer;
+}
+#LoginBtn {
+  background-color: transparent;
+  border: none;
+}
+#CreateBtn {
+  background-color: var(--primary-color);
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+}

@@ -1,0 +1,142 @@
+.header-nav {
+  box-sizing: border-box;
+  height: 72px;
+  padding: 0 56px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background: var(--background-color, #ffffff);
+  border-bottom: 1px solid var(--border-color, #e3e8ee);
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+}
+
+/* ---------- Logo ---------- */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  justify-self: start;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--primary-font-color, #12202e);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.header-brand-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  background: var(--accent-color, #d8f05a);
+}
+
+/* ---------- Middle links ---------- */
+.header-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-link {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--muted-font-color, #667385);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.header-link:hover {
+  color: var(--primary-font-color, #12202e);
+}
+
+.header-link--strong {
+  font-weight: 600;
+  color: var(--primary-font-color, #12202e);
+}
+
+/* ---------- Right side buttons ---------- */
+.header-nav-right {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 22px;
+  background-color: transparent;
+}
+
+.header-btn-primary {
+  height: 40px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--primary-color, #2557e8);
+  border-radius: 12px;
+  background: var(--primary-color, #2557e8);
+  color: var(--on-primary-color, #ffffff);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+/* Kept in case other pages still use it. */
+.header-btn-outline {
+  height: 40px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--primary-font-color, #12202e);
+  border-radius: 12px;
+  background: var(--background-color, #ffffff);
+  color: var(--primary-font-color, #12202e);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.header-brand:focus-visible,
+.header-link:focus-visible,
+.header-btn-primary:focus-visible,
+.header-btn-outline:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 900px) {
+  .header-nav {
+    height: 64px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-nav-links {
+    display: none;
+  }
+
+  .header-nav-right {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-brand {
+    font-size: 19px;
+  }
+
+  .header-btn-primary {
+    padding: 0 14px;
+  }
+}
