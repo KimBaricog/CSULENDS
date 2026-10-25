@@ -1,5 +1,5 @@
 import { formatFee } from "../lib/itemOptions";
-import "./style/itemcard.css";
+import "./style/Itemcard.css";
 
 // "Maria Santos" becomes "Maria S." so full names are not shown to everyone.
 function shortName(fullName) {
