@@ -42,7 +42,7 @@ function App() {
         </Route>
 
         <Route element={<AdminRoute />}>
-          <Route path="/adminpanel" />
+          <Route path="/adminpanel" element={<AdminPanel />} />
         </Route>
 
         <Route path="*" element={<ComingSoon title="Page not found" />} />
