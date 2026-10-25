@@ -34,10 +34,6 @@ function LandingPage() {
       <main className="Landing-split">
         <section className="Landing-form-side">
           <div className="text-area">
-            <span className="Landing-badge">
-              <span aria-hidden="true">✓</span> Only for verified CSU students
-            </span>
-
             <h1 className="Landing-title">Borrow it from a classmate.</h1>
 
             <p className="Landing-lead">

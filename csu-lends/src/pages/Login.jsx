@@ -8,84 +8,6 @@ import "./style/login.css";
 // for example "@yourschool.edu.ph". Leave it empty to skip the check.
 const SCHOOL_EMAIL_DOMAIN = "@gmail.com";
 
-const ICONS = {
-  racket: (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <g
-        transform="rotate(-40 32 32)"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-      >
-        <ellipse cx="32" cy="22" rx="14" ry="18" />
-        <path d="M32 4v36M18 22h28M21 10l22 24M43 10L21 34" strokeWidth="1.3" />
-        <path d="M32 40v20" strokeWidth="5" />
-      </g>
-    </svg>
-  ),
-  calculator: (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="14" y="7" width="36" height="50" rx="6" />
-        <rect x="20" y="13" width="24" height="10" rx="2" />
-        <path
-          d="M22 32h2M32 32h2M42 32h2M22 41h2M32 41h2M42 41h2M22 50h2M32 50h2"
-          strokeWidth="4"
-        />
-      </g>
-    </svg>
-  ),
-  camera: (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M8 20h12l4-6h16l4 6h12v32H8z" />
-        <circle cx="32" cy="35" r="10" />
-        <circle cx="32" cy="35" r="3.5" />
-      </g>
-    </svg>
-  ),
-};
-
-const SHOWCASE = [
-  {
-    id: "racket",
-    icon: "racket",
-    name: "Badminton racket",
-    fee: "₱20/day",
-    className: "login-card--one",
-    tint: "var(--tint-lime, #eef8c4)",
-  },
-  {
-    id: "calculator",
-    icon: "calculator",
-    name: "Scientific calculator",
-    fee: "₱10/day",
-    className: "login-card--two",
-    tint: "var(--tint-peach, #ffe6d6)",
-  },
-  {
-    id: "camera",
-    icon: "camera",
-    name: "Digital camera",
-    fee: "₱50/day",
-    className: "login-card--three",
-    tint: "var(--tint-purple, #e4ddfb)",
-  },
-];
-
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -107,7 +29,7 @@ export default function Login() {
       SCHOOL_EMAIL_DOMAIN &&
       !cleanEmail.endsWith(SCHOOL_EMAIL_DOMAIN)
     ) {
-      setEmailError("Use your CSU student email address.");
+      setEmailError("Use a valid email address.");
       ok = false;
     } else {
       setEmailError("");
@@ -147,6 +69,19 @@ export default function Login() {
   const emailHasError = Boolean(emailError || formError);
   const passwordHasError = Boolean(passwordError || formError);
 
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/browse`,
+      },
+    });
+
+    if (error) {
+      console.error("Google login error:", error.message);
+      setFormError("Unable to sign in with Google. Please try again.");
+    }
+  };
   return (
     <div className="login-page">
       <header className="login-nav">
@@ -169,14 +104,12 @@ export default function Login() {
             <p className="login-subtitle">
               Log in to see what your classmates are sharing.
             </p>
-
             {formError && (
               <div className="login-banner" role="alert">
                 <span className="login-banner-icon">!</span>
                 {formError}
               </div>
             )}
-
             <div className="login-field">
               <label htmlFor="email" className="login-label">
                 CSU email
@@ -197,7 +130,6 @@ export default function Login() {
                 </p>
               )}
             </div>
-
             <div className="login-field">
               <label htmlFor="password" className="login-label">
                 Password
@@ -230,15 +162,27 @@ export default function Login() {
                 </p>
               )}
             </div>
-
             <div className="login-row">
               <Link to="/forgot-password" className="login-link">
                 Forgot password?
               </Link>
             </div>
-
             <button type="submit" className="login-submit" disabled={loading}>
               {loading ? "Logging in..." : "Log in"}
+            </button>
+            <p className="login-lock">Continue with Google</p>
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="google-login-button"
+            >
+              <img
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                alt=""
+                width="20"
+                height="20"
+              />
+              Continue with Google
             </button>
 
             <p className="login-foot">

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
 import "./style/appheader.css";
+import useProfile from "../hooks/useProfile";
 
 // Top bar for pages students see after logging in.
 // Props: searchValue and onSearchChange (the Browse page owns the search text).
@@ -11,6 +12,7 @@ export default function AppHeader({ searchValue = "", onSearchChange }) {
   const { session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const { profile, loading } = useProfile();
 
   const user = session?.user;
   const name = user?.user_metadata?.full_name || user?.email || "";
@@ -92,6 +94,11 @@ export default function AppHeader({ searchValue = "", onSearchChange }) {
                 <strong>{user?.user_metadata?.full_name || "Student"}</strong>
                 <span>{user?.email}</span>
               </div>
+              {profile?.is_admin && (
+                <button onClick={() => (window.location.href = "/adminpanel")}>
+                  Admin Panel
+                </button>
+              )}
               <Link to="/requests" className="app-header-item" role="menuitem">
                 My requests
               </Link>

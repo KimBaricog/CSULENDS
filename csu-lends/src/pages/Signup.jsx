@@ -30,9 +30,9 @@ export default function Signup() {
 
     if (!fullName.trim()) next.fullName = "Enter your full name.";
 
-    if (!cleanEmail) next.email = "Enter your CSU email.";
-    else if (SCHOOL_EMAIL_DOMAIN && !cleanEmail.endsWith(SCHOOL_EMAIL_DOMAIN))
-      next.email = "Use your CSU student email address.";
+    if (!cleanEmail) next.email = "Enter a valid email address.";
+    else if (cleanEmail.endsWith(""))
+      next.email = "Don't use your school email address";
 
     if (password.length < MIN_PASSWORD_LENGTH)
       next.password = `Use at least ${MIN_PASSWORD_LENGTH} characters.`;
@@ -140,7 +140,6 @@ export default function Signup() {
                 We sent a confirmation link to <strong>{sentTo}</strong>. Open
                 it to activate your account, then log in.
               </p>
-              <span className="signup-badge">✓ Verified students only</span>
 
               <div className="signup-inbox-actions">
                 <Link to="/login" className="login-submit signup-link-button">
