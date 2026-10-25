@@ -31,7 +31,7 @@ const CATEGORIES = [
   },
 ];
 
-export default function BorrowCategories() {
+export default function Borrowcategories() {
   return (
     <section id="what-you-can-borrow" className="ls-section">
       <div className="ls-inner">
