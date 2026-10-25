@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import useSession from "../hooks/useSession";
 import AppHeader from "../components/AppHeader";
+import AccountSheet from "../components/AccountSheet";
 import BrowseFilters from "../components/BrowseFilters";
 import ItemCard from "../components/Itemcard";
 import ItemDetailModal from "../components/ItemDetailModal";
@@ -29,15 +31,21 @@ const ITEM_COLUMNS =
   "photo_url, created_at, owner:profiles!owner_id(full_name)";
 
 export default function Browse() {
+  const { session } = useSession();
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [sort, setSort] = useState("newest");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const displayName =
+    session?.user?.user_metadata?.full_name || session?.user?.email || "";
+  const initial = displayName ? displayName.trim()[0].toUpperCase() : "?";
 
   // Load approved items. The status filter matters: the database lets students
   // see their own pending items too, so we ask for approved ones only.
@@ -118,8 +126,9 @@ export default function Browse() {
     filters.maxFee < MAX_FEE ||
     filters.pickups.length > 0;
 
-  const activeFilterCount =
-    (filters.category !== "All" ? 1 : 0) +
+  // The Filters button counts only the filters that live inside the panel
+  // (the category chips are always visible on phones).
+  const panelFilterCount =
     (filters.freeOnly ? 1 : 0) +
     (filters.maxFee < MAX_FEE ? 1 : 0) +
     (filters.pickups.length > 0 ? 1 : 0);
@@ -129,7 +138,20 @@ export default function Browse() {
       <AppHeader searchValue={search} onSearchChange={setSearch} />
 
       <main className="browse-layout">
+        {filtersOpen && (
+          <div
+            className="browse-backdrop"
+            onClick={() => setFiltersOpen(false)}
+          />
+        )}
+
         <aside className={`browse-sidebar ${filtersOpen ? "is-open" : ""}`}>
+          <div className="browse-sheet-head">
+            <h2>Filters</h2>
+            <button type="button" onClick={() => setFiltersOpen(false)}>
+              Done
+            </button>
+          </div>
           <BrowseFilters
             filters={filters}
             onChange={updateFilters}
@@ -142,6 +164,7 @@ export default function Browse() {
         <section className="browse-content">
           <div className="browse-heading">
             <div>
+              <span className="browse-eyebrow">Caraga State University</span>
               <h1>What do you need?</h1>
               <p>
                 {loading
@@ -150,27 +173,72 @@ export default function Browse() {
               </p>
             </div>
 
-            <div className="browse-controls">
-              <button
-                type="button"
-                className="browse-filter-toggle"
-                aria-expanded={filtersOpen}
-                onClick={() => setFiltersOpen((open) => !open)}
-              >
-                Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
-              </button>
+            <button
+              type="button"
+              className="browse-avatar"
+              onClick={() => setAccountOpen(true)}
+              aria-label="Open account menu"
+            >
+              {initial}
+            </button>
+          </div>
 
-              <label className="browse-sort">
-                <span className="browse-sr-only">Sort items</span>
-                <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                  {Object.entries(SORTS).map(([key, label]) => (
-                    <option key={key} value={key}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
+          <div className="browse-controls">
+            <button
+              type="button"
+              className="browse-filter-toggle"
+              aria-expanded={filtersOpen}
+              onClick={() => setFiltersOpen((open) => !open)}
+            >
+              Filters{panelFilterCount > 0 ? ` (${panelFilterCount})` : ""}
+            </button>
+
+            <label className="browse-sort">
+              <span className="browse-sr-only">Sort items</span>
+              <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                {Object.entries(SORTS).map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          {/* Phones only: search and category chips, as in the app design. */}
+          <div className="browse-mobile-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <g
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-4-4" />
+              </g>
+            </svg>
+            <input
+              type="search"
+              placeholder="Search rackets, calculators..."
+              aria-label="Search items"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+
+          <div className="browse-chips" role="group" aria-label="Category">
+            {["All", ...CATEGORIES].map((name) => (
+              <button
+                key={name}
+                type="button"
+                className={filters.category === name ? "is-on" : ""}
+                aria-pressed={filters.category === name}
+                onClick={() => updateFilters({ category: name })}
+              >
+                {name}
+              </button>
+            ))}
           </div>
 
           {error && (
@@ -220,6 +288,8 @@ export default function Browse() {
           onClose={() => setSelectedItem(null)}
         />
       )}
+
+      <AccountSheet open={accountOpen} onClose={() => setAccountOpen(false)} />
     </div>
   );
 }

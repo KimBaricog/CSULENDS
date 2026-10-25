@@ -107,3 +107,41 @@
   outline: 3px solid var(--primary-color, #2557e8);
   outline-offset: 2px;
 }
+
+/* ---------- Phones: compact cards, two per row (as in the app design) ---------- */
+@media (max-width: 900px) {
+  .itemcard {
+    border-radius: 18px;
+  }
+
+  .itemcard-hit {
+    border-radius: 18px;
+  }
+
+  .itemcard-photo {
+    margin: 8px 8px 0;
+    border-radius: 12px;
+  }
+
+  .itemcard-body {
+    padding: 10px 12px 12px;
+  }
+
+  .itemcard-body h2 {
+    font-size: 14px;
+  }
+
+  .itemcard-description,
+  .itemcard-owner,
+  .itemcard-days {
+    display: none;
+  }
+
+  .itemcard-bottom {
+    padding-top: 8px;
+  }
+
+  .itemcard-fee {
+    font-size: 14px;
+  }
+}

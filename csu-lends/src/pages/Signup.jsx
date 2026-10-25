@@ -7,7 +7,7 @@ import "./style/signup.css";
 
 // Put your school's email ending here once you have confirmed it,
 // for example "@yourschool.edu.ph". Leave it empty to skip the check.
-const SCHOOL_EMAIL_DOMAIN = "@gmail.com";
+const SCHOOL_EMAIL_DOMAIN = "";
 const MIN_PASSWORD_LENGTH = 8;
 
 export default function Signup() {
@@ -31,8 +31,9 @@ export default function Signup() {
     if (!fullName.trim()) next.fullName = "Enter your full name.";
 
     if (!cleanEmail) next.email = "Enter a valid email address.";
-    else if (cleanEmail.endsWith(""))
+    else if (!cleanEmail.endsWith(SCHOOL_EMAIL_DOMAIN)) {
       next.email = "Don't use your school email address";
+    }
 
     if (password.length < MIN_PASSWORD_LENGTH)
       next.password = `Use at least ${MIN_PASSWORD_LENGTH} characters.`;

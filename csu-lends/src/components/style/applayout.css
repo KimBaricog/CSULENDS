@@ -1,0 +1,10 @@
+@media (max-width: 900px) {
+  .applayout {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Keeps the bottom of every page clear of the navigation bar. */
+  .applayout main {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+  }
+}

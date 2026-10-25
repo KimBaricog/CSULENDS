@@ -10,14 +10,7 @@
   gap: 30px;
   background: var(--background-color, #ffffff);
   border-bottom: 1px solid var(--border-color, #e3e8ee);
-  font-family: var(
-    --font-family,
-    Poppins,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--font-family, Poppins, system-ui, -apple-system, "Segoe UI", sans-serif);
   color: var(--primary-font-color, #12202e);
 }
 
@@ -75,6 +68,10 @@
   color: var(--primary-font-color, #12202e);
   font: inherit;
   font-size: 14px;
+}
+
+.app-header-spacer {
+  flex: 1;
 }
 
 /* ---------- Right side ---------- */
@@ -191,42 +188,10 @@
   outline-offset: 2px;
 }
 
-/* ---------- Tablets and phones ---------- */
+/* ---------- Tablets and phones ----------
+   The top bar is hidden; the bottom navigation bar and each page's own heading replace it. */
 @media (max-width: 900px) {
   .app-header {
-    height: auto;
-    padding: 12px 20px;
-    flex-wrap: wrap;
-    gap: 12px;
-    background-color: transparent;
-    position: absolute;
-    border: none;
-  }
-
-  .app-header-brand {
     display: none;
-  }
-
-  .app-header-search {
-    order: 3;
-    flex-basis: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    margin-top: 10px;
-  }
-
-  .app-header-link {
-    display: none;
-  }
-
-  .app-header-right {
-    gap: 12px;
-  }
-  .app-header-lend {
-    display: none;
-  }
-  .app-header-menu {
-    left: 60px;
-    top: 10px;
   }
 }

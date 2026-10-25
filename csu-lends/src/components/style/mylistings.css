@@ -91,3 +91,26 @@
   line-height: 1.5;
   color: var(--error-text-color, #b42318);
 }
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb (the part you drag) */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}

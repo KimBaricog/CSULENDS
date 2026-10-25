@@ -44,14 +44,19 @@ export default function RequestCard({ request, mode, onChangeStatus }) {
       {item?.photo_url ? (
         <img src={item.photo_url} alt="" className="reqcard-photo" />
       ) : (
-        <div className="reqcard-photo reqcard-photo--empty" aria-hidden="true" />
+        <div
+          className="reqcard-photo reqcard-photo--empty"
+          aria-hidden="true"
+        />
       )}
 
       <div className="reqcard-body">
         <div className="reqcard-top">
           <h2>{item?.name || "Item no longer available"}</h2>
           <span className={`reqcard-pill ${status.className}`}>
-            {lending && request.status === "pending" ? "New request" : status.text}
+            {lending && request.status === "pending"
+              ? "New request"
+              : status.text}
           </span>
         </div>
 
@@ -64,11 +69,15 @@ export default function RequestCard({ request, mode, onChangeStatus }) {
           {formatDay(request.start_date)} to {formatDay(request.end_date)}
           <span>
             {request.total_fee > 0 ? `₱${request.total_fee} total` : "Free"}
-            {item && request.total_fee > 0 && ` (${formatFee(item.fee_per_day)})`}
+            {item &&
+              request.total_fee > 0 &&
+              ` (${formatFee(item.fee_per_day)})`}
           </span>
         </p>
 
-        {request.message && <p className="reqcard-message">“{request.message}”</p>}
+        {request.message && (
+          <p className="reqcard-message">“{request.message}”</p>
+        )}
 
         {request.status === "accepted" && item && (
           <p className="reqcard-info">
@@ -78,7 +87,11 @@ export default function RequestCard({ request, mode, onChangeStatus }) {
           </p>
         )}
 
-        {error && <p className="reqcard-error" role="alert">{error}</p>}
+        {error && (
+          <p className="reqcard-error" role="alert">
+            {error}
+          </p>
+        )}
 
         <div className="reqcard-actions">
           {!lending && request.status === "pending" && (
@@ -94,7 +107,12 @@ export default function RequestCard({ request, mode, onChangeStatus }) {
 
           {lending && request.status === "pending" && (
             <>
-              <button type="button" className="reqcard-btn reqcard-btn--primary" disabled={busy} onClick={() => change("accepted")}>
+              <button
+                type="button"
+                className="reqcard-btn reqcard-btn--primary"
+                disabled={busy}
+                onClick={() => change("accepted")}
+              >
                 {busy ? "Saving..." : "Accept"}
               </button>
               <button

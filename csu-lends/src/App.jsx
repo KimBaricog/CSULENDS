@@ -8,6 +8,7 @@ import Lend from "./pages/Lend";
 import AdminPanel from "./pages/AdminPanel";
 import AdminRoute from "./components/AdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AppLayout from "./components/AppLayout";
 import Requests from "./pages/Requests";
 
 // Temporary page for routes you have not built yet.
@@ -34,13 +35,14 @@ function App() {
           element={<ComingSoon title="Forgot password" />}
         />
         <Route element={<ProtectedRoute />}>
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/requests" element={<Requests />} />
-          <Route path="/lend" element={<Lend />} />
-        </Route>
-
-        <Route element={<AdminRoute />}>
-          <Route path="/adminpanel" element={<AdminPanel />} />
+          <Route element={<AppLayout />}>
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/requests" element={<Requests />} />
+            <Route path="/lend" element={<Lend />} />
+            <Route element={<AdminRoute />}>
+              <Route path="/admin" element={<AdminPanel />} />
+            </Route>
+          </Route>
         </Route>
 
         <Route path="*" element={<ComingSoon title="Page not found" />} />

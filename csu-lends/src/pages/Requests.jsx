@@ -25,12 +25,16 @@ export default function Requests() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    if (!userId) return undefined;
+    if (!userId) {
+      setLoading(false);
+      return undefined;
+    }
     let active = true;
     setLoading(true);
     setError("");
 
-    const itemFields = "name, photo_url, pickup_spot, fee_per_day, owner_id, owner:profiles!owner_id(full_name)";
+    const itemFields =
+      "name, photo_url, pickup_spot, fee_per_day, owner_id, owner:profiles!owner_id(full_name)";
 
     // Borrowing: requests I made. Lending: requests on items I own.
     const query =
@@ -41,7 +45,9 @@ export default function Requests() {
             .eq("borrower_id", userId)
         : supabase
             .from("borrow_requests")
-            .select(`${BASE_COLUMNS}, item:items!inner(${itemFields}), borrower:profiles!borrower_id(full_name, program)`)
+            .select(
+              `${BASE_COLUMNS}, item:items!inner(${itemFields}), borrower:profiles!borrower_id(full_name, program)`,
+            )
             .eq("item.owner_id", userId);
 
     query
@@ -50,7 +56,10 @@ export default function Requests() {
       .then(({ data, error: fetchError }) => {
         if (!active) return;
         if (fetchError) {
-          setError("Could not load your requests. Please refresh the page.");
+          console.error("Could not load requests:", fetchError);
+          setError(
+            `Could not load your requests (${fetchError.code || "error"}). Please refresh the page.`,
+          );
           setRequests([]);
         } else {
           setRequests(data || []);
@@ -79,14 +88,20 @@ export default function Requests() {
 
     if (updateError) {
       // 23P01 = the dates clash with another accepted loan of the same item.
-      if (updateError.code === "23P01") return "These dates overlap with another accepted request for this item.";
+      if (updateError.code === "23P01")
+        return "These dates overlap with another accepted request for this item.";
       return updateError.message?.includes("not allowed")
         ? "This request has already changed. Refresh the page."
         : "Could not save. Please try again.";
     }
-    if (!data || data.length === 0) return "Could not save. Please refresh the page.";
+    if (!data || data.length === 0)
+      return "Could not save. Please refresh the page.";
 
-    setRequests((current) => current.map((r) => (r.id === request.id ? { ...r, status: newStatus } : r)));
+    setRequests((current) =>
+      current.map((r) =>
+        r.id === request.id ? { ...r, status: newStatus } : r,
+      ),
+    );
     const messages = {
       accepted: "Request accepted. Meet at the pickup spot.",
       declined: "Request declined.",
@@ -99,8 +114,16 @@ export default function Requests() {
 
   // Open requests first, then finished ones.
   const sorted = useMemo(() => {
-    const rank = { pending: 0, accepted: 1, returned: 2, declined: 3, cancelled: 3 };
-    return [...requests].sort((a, b) => (rank[a.status] ?? 9) - (rank[b.status] ?? 9));
+    const rank = {
+      pending: 0,
+      accepted: 1,
+      returned: 2,
+      declined: 3,
+      cancelled: 3,
+    };
+    return [...requests].sort(
+      (a, b) => (rank[a.status] ?? 9) - (rank[b.status] ?? 9),
+    );
   }, [requests]);
 
   const waitingCount = requests.filter((r) => r.status === "pending").length;
@@ -111,7 +134,10 @@ export default function Requests() {
 
       <main className="requests-main">
         <h1>My requests</h1>
-        <p className="requests-sub">Track what you are borrowing and what classmates ask to borrow from you.</p>
+        <p className="requests-sub">
+          Track what you are borrowing and what classmates ask to borrow from
+          you.
+        </p>
 
         <div className="requests-tabs" role="tablist" aria-label="Request type">
           {TABS.map((t) => (
@@ -128,7 +154,9 @@ export default function Requests() {
           ))}
         </div>
 
-        <p className="requests-notice" role="status" aria-live="polite">{notice}</p>
+        <p className="requests-notice" role="status" aria-live="polite">
+          {notice}
+        </p>
 
         {!loading && !error && waitingCount > 0 && (
           <p className="requests-summary">
@@ -139,7 +167,11 @@ export default function Requests() {
         )}
 
         {loading && <p className="requests-state">Loading...</p>}
-        {error && <p className="requests-state requests-state--error" role="alert">{error}</p>}
+        {error && (
+          <p className="requests-state requests-state--error" role="alert">
+            {error}
+          </p>
+        )}
 
         {!loading && !error && requests.length === 0 && (
           <div className="requests-state">
@@ -147,13 +179,17 @@ export default function Requests() {
               <>
                 <h2>You have not asked to borrow anything yet</h2>
                 <p>Find something you need and send a request.</p>
-                <Link to="/browse" className="requests-action">Browse items</Link>
+                <Link to="/browse" className="requests-action">
+                  Browse items
+                </Link>
               </>
             ) : (
               <>
                 <h2>No one has asked to borrow your items yet</h2>
                 <p>Requests on your approved items show up here.</p>
-                <Link to="/lend" className="requests-action">+ Lend an item</Link>
+                <Link to="/lend" className="requests-action">
+                  + Lend an item
+                </Link>
               </>
             )}
           </div>
@@ -161,7 +197,12 @@ export default function Requests() {
 
         <div className="requests-list">
           {sorted.map((request) => (
-            <RequestCard key={request.id} request={request} mode={tab} onChangeStatus={changeStatus} />
+            <RequestCard
+              key={request.id}
+              request={request}
+              mode={tab}
+              onChangeStatus={changeStatus}
+            />
           ))}
         </div>
       </main>
