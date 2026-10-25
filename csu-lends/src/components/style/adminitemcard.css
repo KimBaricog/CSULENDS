@@ -1,0 +1,229 @@
+.admincard {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 20px;
+  padding: 16px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 22px;
+  background: var(--background-color, #ffffff);
+}
+
+.admincard-photo {
+  position: relative;
+  display: block;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--surface-color, #eef1f5);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.admincard-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admincard-photo span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 10px 8px;
+  background: linear-gradient(transparent, rgba(18, 32, 46, 0.7));
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.admincard-photo:hover span,
+.admincard-photo:focus-visible span {
+  opacity: 1;
+}
+
+.admincard-body {
+  min-width: 0;
+}
+
+.admincard-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admincard-top h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.admincard-fee {
+  flex: none;
+  padding: 3px 12px;
+  border-radius: 12px;
+  background: var(--success-background, #ddf4ea);
+  color: var(--success-color, #17825a);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.admincard-owner {
+  margin: 4px 0 12px;
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+.admincard-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.admincard-facts li {
+  padding: 3px 12px;
+  border-radius: 12px;
+  background: var(--surface-color, #eef1f5);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.admincard-description {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.admincard-reason {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  color: var(--error-text-color, #b42318);
+}
+
+.admincard-error {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+  font-size: 13.5px;
+}
+
+.admincard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admincard-btn {
+  height: 42px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admincard-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admincard-btn--approve {
+  background: var(--primary-color, #2557e8);
+  color: #ffffff;
+}
+
+.admincard-btn--reject {
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+}
+
+.admincard-btn--plain {
+  background: var(--surface-color, #eef1f5);
+  color: var(--primary-font-color, #12202e);
+}
+
+.admincard-reject label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admincard-reject textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 12px;
+  background: var(--background-color, #ffffff);
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.admincard-reject textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #2557e8);
+  box-shadow: 0 0 0 4px rgba(37, 87, 232, 0.14);
+}
+
+.admincard-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 14px;
+}
+
+.admincard-quick button {
+  padding: 5px 12px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 14px;
+  background: var(--background-color, #ffffff);
+  color: inherit;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.admincard-quick button:hover {
+  border-color: var(--primary-color, #2557e8);
+}
+
+.admincard-btn:focus-visible,
+.admincard-quick button:focus-visible,
+.admincard-photo:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .admincard {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .admincard-photo {
+    height: 220px;
+  }
+
+  .admincard-btn {
+    flex: 1;
+  }
+
+  /* 16px stops iPhones from zooming in when the reason box is tapped. */
+  .admincard-reject textarea {
+    font-size: 16px;
+  }
+}

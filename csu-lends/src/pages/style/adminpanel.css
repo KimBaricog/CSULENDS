@@ -1,0 +1,124 @@
+.admin-page {
+  min-height: 100vh;
+  background: var(--primary-background-color, #f6f8fa);
+  color: var(--primary-font-color, #12202e);
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+}
+
+.admin-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 36px 56px 72px;
+}
+
+.admin-heading h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.admin-heading p {
+  margin: 8px 0 24px;
+  font-size: 15px;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- Tabs ---------- */
+.admin-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--toggle-background-color, #e9edf2);
+}
+
+.admin-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 11px;
+  background: none;
+  color: var(--muted-font-color, #667385);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-tabs button.is-on {
+  background: var(--background-color, #ffffff);
+  color: var(--primary-font-color, #12202e);
+}
+
+.admin-tabs button:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+.admin-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ---------- Messages ---------- */
+.admin-notice {
+  min-height: 22px;
+  margin: 16px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--success-color, #17825a);
+}
+
+.admin-state {
+  margin: 28px 0;
+  font-size: 15px;
+  text-align: center;
+  color: var(--muted-font-color, #667385);
+}
+
+.admin-state--error {
+  color: var(--error-text-color, #b42318);
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .admin-main {
+    padding: 24px 20px calc(48px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .admin-heading h1 {
+    font-size: 28px;
+  }
+
+  .admin-tabs {
+    display: flex;
+  }
+
+  .admin-tabs button {
+    flex: 1;
+    justify-content: center;
+    padding: 9px 8px;
+  }
+}

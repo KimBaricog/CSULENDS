@@ -14,16 +14,24 @@
 
 .browse-layout {
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 250px minmax(0, 1fr);
   gap: 32px;
-  padding: 28px 56px 60px;
+  padding: 28px 56px 72px;
 }
 
+.browse-sidebar {
+  align-self: start;
+  position: sticky;
+  top: 96px;
+}
+
+/* ---------- Heading and controls ---------- */
 .browse-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 18px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .browse-heading h1 {
@@ -40,28 +48,145 @@
   color: var(--muted-font-color, #667385);
 }
 
-/* Temporary boxes. Delete these as each piece is built. */
-.browse-placeholder {
-  margin: 0;
-  padding: 18px;
+.browse-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.browse-sort select,
+.browse-filter-toggle {
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 12px;
+  background: var(--background-color, #ffffff);
+  color: inherit;
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.browse-filter-toggle {
+  display: none;
+  font-weight: 600;
+}
+
+.browse-sort select:focus-visible,
+.browse-filter-toggle:focus-visible,
+.browse-action:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+.browse-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Item grid ---------- */
+.browse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* ---------- Empty and error states ---------- */
+.browse-state {
+  padding: 56px 20px;
   border: 2px dashed var(--dashed-border-color, #b9c4d2);
-  border-radius: 16px;
-  color: var(--muted-font-color, #667385);
-  font-size: 14px;
+  border-radius: 24px;
   text-align: center;
+  color: var(--muted-font-color, #667385);
 }
 
-.browse-placeholder--grid {
-  padding: 80px 18px;
+.browse-state h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  color: var(--primary-font-color, #12202e);
 }
 
+.browse-state p {
+  margin: 0 0 18px;
+  font-size: 14.5px;
+}
+
+.browse-state--error {
+  margin: 0 0 18px;
+  padding: 16px;
+  border: 1px solid #f7c1bc;
+  border-radius: 16px;
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+}
+
+.browse-action {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ---------- Tablets and phones ---------- */
 @media (max-width: 900px) {
   .browse-layout {
     grid-template-columns: 1fr;
-    padding: 20px 20px 48px;
+    gap: 16px;
+    padding: 20px 20px calc(48px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Filters become a panel that opens with the Filters button. */
+  .browse-sidebar {
+    display: none;
+    position: static;
+    padding: 20px;
+    border: 1px solid var(--border-color, #e3e8ee);
+    border-radius: 20px;
+    background: var(--background-color, #ffffff);
+  }
+
+  .browse-sidebar.is-open {
+    display: block;
+  }
+
+  .browse-filter-toggle {
+    display: block;
+  }
+
+  .browse-heading {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .browse-heading h1 {
     font-size: 24px;
+  }
+
+  .browse-controls {
+    justify-content: space-between;
+  }
+
+  .browse-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .browse-grid {
+    grid-template-columns: 1fr;
   }
 }
