@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import AppHeader from "../components/AppHeader";
 import BrowseFilters from "../components/BrowseFilters";
-import ItemCard from "../components/ItemCard";
+import ItemCard from "../components/Itemcard";
 import { CATEGORIES, ITEM_STATUS, MAX_FEE } from "../lib/itemOptions";
 import "./style/browse.css";
 
