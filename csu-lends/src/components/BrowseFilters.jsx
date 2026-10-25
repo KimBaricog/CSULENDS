@@ -1,5 +1,5 @@
 import { CATEGORIES, PICKUP_SPOTS, MAX_FEE } from "../lib/itemOptions";
-import "./style/browsefilter.css";
+import "./style/browsefilters.css";
 
 // The filter sidebar. The Browse page owns the values; this only shows them.
 // filters: { category, freeOnly, maxFee, pickups }
