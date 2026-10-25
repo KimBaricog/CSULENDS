@@ -73,7 +73,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://csulends-mp8eevlnx-kimbaricog.vercel.app/browse",
+        redirectTo: `${window.location.origin}/browse`,
       },
     });
 
