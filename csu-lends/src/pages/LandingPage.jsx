@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Visual from "../components/Visual";
 import Header from "../components/Header";
-import Borrowcategories from "../components/Borrowcategories";
+import Borrowcategories from "../components/BorrowCategories";
 import AudienceCards from "../components/AudienceCards";
 import HouseRules from "../components/HouseRules";
 import Faq from "../components/Faq";

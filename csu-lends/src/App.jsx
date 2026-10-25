@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 import Browse from "./pages/Browse";
 import Lend from "./pages/Lend";
 import AdminPanel from "./pages/AdminPanel";
-import AdminRoute from "./components/Adminroute";
+import AdminRoute from "./components/AdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Requests from "./pages/Requests";
 
