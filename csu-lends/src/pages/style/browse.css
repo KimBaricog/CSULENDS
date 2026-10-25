@@ -185,6 +185,13 @@
   }
 }
 
+.browse-heading h1 {
+  margin-bottom: 60px;
+}
+.browse-heading p {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .browse-grid {
     grid-template-columns: 1fr;

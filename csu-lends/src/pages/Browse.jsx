@@ -4,6 +4,7 @@ import { supabase } from "../lib/supabase";
 import AppHeader from "../components/AppHeader";
 import BrowseFilters from "../components/BrowseFilters";
 import ItemCard from "../components/Itemcard";
+import ItemDetailModal from "../components/ItemDetailModal";
 import { CATEGORIES, ITEM_STATUS, MAX_FEE } from "../lib/itemOptions";
 import "./style/browse.css";
 
@@ -24,7 +25,7 @@ const DEFAULT_FILTERS = {
 };
 
 const ITEM_COLUMNS =
-  "id, name, description, category, condition, pickup_spot, max_days, fee_per_day, " +
+  "id, owner_id, name, description, category, condition, pickup_spot, max_days, fee_per_day, " +
   "photo_url, created_at, owner:profiles!owner_id(full_name)";
 
 export default function Browse() {
@@ -32,6 +33,7 @@ export default function Browse() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [sort, setSort] = useState("newest");
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -206,11 +208,18 @@ export default function Browse() {
 
           <div className="browse-grid">
             {visibleItems.map((item) => (
-              <ItemCard key={item.id} item={item} />
+              <ItemCard key={item.id} item={item} onSelect={setSelectedItem} />
             ))}
           </div>
         </section>
       </main>
+
+      {selectedItem && (
+        <ItemDetailModal
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+        />
+      )}
     </div>
   );
 }

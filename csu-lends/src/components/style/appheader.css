@@ -198,12 +198,21 @@
     padding: 12px 20px;
     flex-wrap: wrap;
     gap: 12px;
+    background-color: transparent;
+    position: absolute;
+    border: none;
+  }
+
+  .app-header-brand {
+    display: none;
   }
 
   .app-header-search {
     order: 3;
     flex-basis: 100%;
-    max-width: none;
+    min-width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
   }
 
   .app-header-link {
@@ -212,5 +221,12 @@
 
   .app-header-right {
     gap: 12px;
+  }
+  .app-header-lend {
+    display: none;
+  }
+  .app-header-menu {
+    left: 60px;
+    top: 10px;
   }
 }

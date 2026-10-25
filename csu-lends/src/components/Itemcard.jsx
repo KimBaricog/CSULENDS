@@ -9,11 +9,17 @@ function shortName(fullName) {
   return `${parts[0]} ${parts[parts.length - 1][0].toUpperCase()}.`;
 }
 
-export default function ItemCard({ item }) {
+export default function ItemCard({ item, onSelect }) {
   const free = item.fee_per_day === 0;
 
   return (
     <article className="itemcard">
+      <button
+        type="button"
+        className="itemcard-hit"
+        aria-label={`View ${item.name}`}
+        onClick={() => onSelect && onSelect(item)}
+      />
       <div className="itemcard-photo">
         <img src={item.photo_url} alt={item.name} loading="lazy" />
       </div>

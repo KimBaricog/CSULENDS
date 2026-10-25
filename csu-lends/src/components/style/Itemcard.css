@@ -1,4 +1,5 @@
 .itemcard {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -84,4 +85,25 @@
   margin: 8px 0 0;
   font-size: 12px;
   color: var(--muted-font-color, #667385);
+}
+
+/* Invisible button that covers the whole card. */
+.itemcard-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  border-radius: 20px;
+  background: none;
+  cursor: pointer;
+}
+
+.itemcard:hover {
+  border-color: var(--primary-color, #2557e8);
+  box-shadow: 0 10px 26px rgba(18, 32, 46, 0.1);
+}
+
+.itemcard-hit:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
 }

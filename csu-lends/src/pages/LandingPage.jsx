@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Visual from "../components/Visual";
 import Header from "../components/Header";
-import BorrowCategories from "../components/BorrowCategories";
+import Borrowcategories from "../components/Borrowcategories";
 import AudienceCards from "../components/AudienceCards";
 import HouseRules from "../components/HouseRules";
 import Faq from "../components/Faq";
@@ -83,7 +83,7 @@ function LandingPage() {
         ))}
       </section>
 
-      <BorrowCategories />
+      <Borrowcategories />
       <AudienceCards />
       <HouseRules />
       <Faq />

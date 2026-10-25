@@ -6,8 +6,9 @@ import Signup from "./pages/Signup";
 import Browse from "./pages/Browse";
 import Lend from "./pages/Lend";
 import AdminPanel from "./pages/AdminPanel";
-import AdminRoute from "./components/AdminRoute";
+import AdminRoute from "./components/Adminroute";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Requests from "./pages/Requests";
 
 // Temporary page for routes you have not built yet.
 // Replace each one with the real page when it is ready.
@@ -34,10 +35,7 @@ function App() {
         />
         <Route element={<ProtectedRoute />}>
           <Route path="/browse" element={<Browse />} />
-          <Route
-            path="/requests"
-            element={<ComingSoon title="My requests" />}
-          />
+          <Route path="/requests" element={<Requests />} />
           <Route path="/lend" element={<Lend />} />
         </Route>
 

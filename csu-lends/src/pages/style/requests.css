@@ -1,0 +1,136 @@
+.requests-page {
+  min-height: 100vh;
+  background: var(--primary-background-color, #f6f8fa);
+  color: var(--primary-font-color, #12202e);
+  font-family: var(--font-family, Poppins, system-ui, -apple-system, "Segoe UI", sans-serif);
+}
+
+.requests-main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 36px 56px 72px;
+}
+
+.requests-main h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.requests-sub {
+  margin: 8px 0 24px;
+  font-size: 15px;
+  color: var(--muted-font-color, #667385);
+}
+
+.requests-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--toggle-background-color, #e9edf2);
+}
+
+.requests-tabs button {
+  padding: 9px 22px;
+  border: 0;
+  border-radius: 11px;
+  background: none;
+  color: var(--muted-font-color, #667385);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.requests-tabs button.is-on {
+  background: var(--background-color, #ffffff);
+  color: var(--primary-font-color, #12202e);
+}
+
+.requests-tabs button:focus-visible,
+.requests-action:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+.requests-notice {
+  min-height: 22px;
+  margin: 16px 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--success-color, #17825a);
+}
+
+.requests-summary {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--warning-color, #a8690f);
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.requests-state {
+  margin: 20px 0;
+  padding: 48px 20px;
+  border: 2px dashed var(--dashed-border-color, #b9c4d2);
+  border-radius: 24px;
+  text-align: center;
+  color: var(--muted-font-color, #667385);
+}
+
+.requests-state h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  color: var(--primary-font-color, #12202e);
+}
+
+.requests-state p {
+  margin: 0 0 18px;
+  font-size: 14.5px;
+}
+
+.requests-state--error {
+  border-style: solid;
+  border-color: #f7c1bc;
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+}
+
+.requests-action {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 13px;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .requests-main {
+    padding: 24px 20px calc(48px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .requests-main h1 {
+    font-size: 28px;
+  }
+
+  .requests-tabs {
+    display: flex;
+  }
+
+  .requests-tabs button {
+    flex: 1;
+  }
+}

@@ -1,0 +1,174 @@
+.reqcard {
+  display: flex;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 22px;
+  background: var(--background-color, #ffffff);
+}
+
+.reqcard-photo {
+  width: 110px;
+  height: 110px;
+  flex: none;
+  border-radius: 16px;
+  object-fit: cover;
+  background: var(--surface-color, #eef1f5);
+}
+
+.reqcard-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.reqcard-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.reqcard-top h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.reqcard-pill {
+  flex: none;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reqcard-pill--pending {
+  background: var(--warning-background, #fcefd0);
+  color: var(--warning-color, #a8690f);
+}
+
+.reqcard-pill--accepted {
+  background: var(--success-background, #ddf4ea);
+  color: var(--success-color, #17825a);
+}
+
+.reqcard-pill--ended {
+  background: var(--surface-color, #eef1f5);
+  color: var(--muted-font-color, #667385);
+}
+
+.reqcard-person {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+.reqcard-person strong {
+  color: var(--primary-font-color, #12202e);
+  font-weight: 600;
+}
+
+.reqcard-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.reqcard-dates span {
+  font-weight: 700;
+}
+
+.reqcard-message {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--surface-color, #eef1f5);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.reqcard-info {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: var(--tint-blue, #dce6ff);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.reqcard-error {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+  font-size: 13.5px;
+}
+
+.reqcard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.reqcard-actions:empty {
+  display: none;
+}
+
+.reqcard-btn {
+  height: 40px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reqcard-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reqcard-btn--primary {
+  background: var(--primary-color, #2557e8);
+  color: #ffffff;
+}
+
+.reqcard-btn--danger {
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+}
+
+.reqcard-btn--plain {
+  background: var(--surface-color, #eef1f5);
+  color: var(--primary-font-color, #12202e);
+}
+
+.reqcard-btn:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .reqcard {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .reqcard-photo {
+    width: 100%;
+    height: 170px;
+  }
+
+  .reqcard-btn {
+    flex: 1;
+  }
+}
