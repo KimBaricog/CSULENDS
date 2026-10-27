@@ -103,6 +103,20 @@ export default function Signup() {
     );
   };
 
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "https://csulends.vercel.app/browse",
+      },
+    });
+
+    if (error) {
+      console.error("Google login error:", error.message);
+      setFormError("Unable to sign in with Google. Please try again.");
+    }
+  };
+
   return (
     <div className="login-page">
       <header className="login-nav">
@@ -227,6 +241,7 @@ export default function Signup() {
                   id="email"
                   type="email"
                   autoComplete="email"
+                  placeholder="e.g. Jhondoe@gmail.com"
                   className={`login-input ${errors.email ? "login-input--error" : ""}`}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -294,6 +309,21 @@ export default function Signup() {
 
               <button type="submit" className="login-submit" disabled={loading}>
                 {loading ? "Creating account..." : "Create account"}
+              </button>
+
+              <p className="login-lock">or</p>
+              <button
+                type="button"
+                onClick={handleGoogleLogin}
+                className="google-login-button"
+              >
+                <img
+                  src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                Continue with Google
               </button>
 
               <p className="login-foot">

@@ -114,7 +114,7 @@ export default function Login() {
             )}
             <div className="login-field">
               <label htmlFor="email" className="login-label">
-                CSU email
+                Email
               </label>
               <input
                 id="email"
@@ -172,7 +172,7 @@ export default function Login() {
             <button type="submit" className="login-submit" disabled={loading}>
               {loading ? "Logging in..." : "Log in"}
             </button>
-            <p className="login-lock">Continue with Google</p>
+            <p className="login-lock">or</p>
             <button
               type="button"
               onClick={handleGoogleLogin}
