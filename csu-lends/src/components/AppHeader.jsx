@@ -97,7 +97,7 @@ export default function AppHeader({ searchValue = "", onSearchChange }) {
                 <span>{user?.email}</span>
               </div>
               {profile?.is_admin && (
-                <button onClick={() => (window.location.href = "/adminpanel")}>
+                <button onClick={() => (window.location.href = "/admin")}>
                   Admin Panel
                 </button>
               )}

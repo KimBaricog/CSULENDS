@@ -26,6 +26,102 @@
   letter-spacing: -0.04em;
 }
 
+.admin-main--wide {
+  max-width: 1100px;
+}
+
+.admin-heading--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-heading--row p {
+  margin-bottom: 0;
+}
+
+.admin-refresh {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted-font-color, #667385);
+}
+
+.admin-refresh button {
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 11px;
+  background: var(--background-color, #ffffff);
+  color: var(--primary-font-color, #12202e);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Top-level sections: Overview, Review, Users, Issues */
+.admin-nav {
+  display: flex;
+  gap: 4px;
+  margin: 24px 0 22px;
+  padding: 0 0 0;
+  border-bottom: 1px solid var(--border-color, #e3e8ee);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.admin-nav button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  margin-bottom: -1px;
+  padding: 11px 18px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: none;
+  color: var(--muted-font-color, #667385);
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-nav button.is-on {
+  border-bottom-color: var(--primary-color, #2557e8);
+  color: var(--primary-font-color, #12202e);
+}
+
+.admin-nav button:focus-visible,
+.admin-refresh button:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+.admin-badge {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.admin-badge--warn {
+  background: var(--warning-background, #fcefd0);
+  color: var(--warning-color, #a8690f);
+}
+
+.admin-badge--problem {
+  background: var(--error-color, #d92d20);
+  color: #ffffff;
+}
+
 .admin-heading p {
   margin: 8px 0 24px;
   font-size: 15px;
@@ -104,6 +200,16 @@
 }
 
 @media (max-width: 900px) {
+  .admin-heading--row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-nav button {
+    padding: 11px 12px;
+    font-size: 14px;
+  }
+
   .admin-main {
     padding: 24px 20px calc(48px + env(safe-area-inset-bottom, 0px));
   }
