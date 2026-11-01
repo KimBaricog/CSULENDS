@@ -1,6 +1,6 @@
 import { formatFee } from "../lib/itemOptions";
 import { initialOf } from "../lib/people";
-import "./style/itemcard.css";
+import "./style/Itemcard.css";
 
 export default function ItemCard({ item, onSelect }) {
   const free = item.fee_per_day === 0;
