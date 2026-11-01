@@ -1,16 +1,10 @@
 import { formatFee } from "../lib/itemOptions";
-import "./style/Itemcard.css";
-
-// "Maria Santos" becomes "Maria S." so full names are not shown to everyone.
-function shortName(fullName) {
-  if (!fullName) return "a classmate";
-  const parts = fullName.trim().split(/\s+/);
-  if (parts.length === 1) return parts[0];
-  return `${parts[0]} ${parts[parts.length - 1][0].toUpperCase()}.`;
-}
+import { initialOf } from "../lib/people";
+import "./style/itemcard.css";
 
 export default function ItemCard({ item, onSelect }) {
   const free = item.fee_per_day === 0;
+  const lenderName = item.owner?.full_name || "A classmate";
 
   return (
     <article className="itemcard">
@@ -43,8 +37,12 @@ export default function ItemCard({ item, onSelect }) {
         </div>
 
         <p className="itemcard-owner">
-          {item.pickup_spot} · Lent by {shortName(item.owner?.full_name)}
+          <span className="itemcard-avatar" aria-hidden="true">
+            {initialOf(lenderName)}
+          </span>
+          <span className="itemcard-ownername">{lenderName}</span>
         </p>
+        <p className="itemcard-pickup">{item.pickup_spot}</p>
       </div>
     </article>
   );

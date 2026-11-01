@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { formatFee } from "../lib/itemOptions";
+import TrustCard from "./TrustCard";
 import "./style/requestcard.css";
 
 const STATUS = {
@@ -19,7 +20,12 @@ const formatDay = (value) =>
 
 // One request. mode is "borrowing" (I asked for someone's item) or "lending" (someone asked for mine).
 // onChangeStatus(request, newStatus) returns null on success, or an error message.
-export default function RequestCard({ request, mode, onChangeStatus }) {
+export default function RequestCard({
+  request,
+  mode,
+  onChangeStatus,
+  summary,
+}) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -64,6 +70,12 @@ export default function RequestCard({ request, mode, onChangeStatus }) {
           {lending ? "Requested by" : "Owner:"} <strong>{otherName}</strong>
           {lending && otherPerson?.program ? ` · ${otherPerson.program}` : ""}
         </p>
+
+        <TrustCard
+          compact
+          role={lending ? "borrower" : "lender"}
+          summary={summary}
+        />
 
         <p className="reqcard-dates">
           {formatDay(request.start_date)} to {formatDay(request.end_date)}

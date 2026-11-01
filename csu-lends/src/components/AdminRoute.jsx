@@ -4,7 +4,12 @@ import useProfile from "../hooks/useProfile";
 export default function AdminRoute() {
   const { profile, loading } = useProfile();
 
-  if (loading) return <p>Loading....</p>;
+  if (loading)
+    return (
+      <>
+        <div className="loading"></div>
+      </>
+    );
 
   return profile?.is_admin ? <Outlet /> : <Navigate to="/browse" replace />;
 }

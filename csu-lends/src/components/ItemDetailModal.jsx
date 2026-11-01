@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
+import useStudentSummaries from "../hooks/useStudentSummaries";
+import TrustCard from "./TrustCard";
 import { formatFee } from "../lib/itemOptions";
 import "./style/itemdetailmodal.css";
 
@@ -49,6 +51,8 @@ export default function ItemDetailModal({ item, onClose }) {
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
 
+  const summaries = useStudentSummaries([item.owner_id]);
+  const lender = summaries[item.owner_id];
   const isOwner = item.owner_id === userId;
   const loanDays = Math.max(1, daysBetween(start, end));
   const total = item.fee_per_day * loanDays;
@@ -145,12 +149,15 @@ export default function ItemDetailModal({ item, onClose }) {
             </span>
           </div>
 
-          <p className="detail-owner">
-            Lent by {shortName(item.owner?.full_name)}
-          </p>
           {item.description && (
             <p className="detail-description">{item.description}</p>
           )}
+
+          <TrustCard
+            role="lender"
+            name={item.owner?.full_name}
+            summary={lender}
+          />
 
           <ul className="detail-facts">
             <li>

@@ -12,12 +12,19 @@
     z-index: 50;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     align-items: end;
     padding: 8px 6px calc(8px + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--border-color, #e3e8ee);
     background: var(--background-color, #ffffff);
-    font-family: var(--font-family, Poppins, system-ui, -apple-system, "Segoe UI", sans-serif);
+    font-family: var(
+      --font-family,
+      Poppins,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif
+    );
   }
 
   .bottomnav-item {

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
+import useStudentSummaries from "../hooks/useStudentSummaries";
 import AppHeader from "../components/AppHeader";
 import RequestCard from "../components/RequestCard";
 import "./style/requests.css";
@@ -112,6 +113,11 @@ export default function Requests() {
     return null;
   };
 
+  // The other person in each request (the owner when I borrow, the borrower when I lend).
+  const otherIdOf = (request) =>
+    tab === "lending" ? request.borrower_id : request.item?.owner_id;
+  const summaries = useStudentSummaries(requests.map(otherIdOf));
+
   // Open requests first, then finished ones.
   const sorted = useMemo(() => {
     const rank = {
@@ -202,6 +208,7 @@ export default function Requests() {
               request={request}
               mode={tab}
               onChangeStatus={changeStatus}
+              summary={summaries[otherIdOf(request)]}
             />
           ))}
         </div>
