@@ -6,7 +6,7 @@ import useStudentSummaries from "../hooks/useStudentSummaries";
 import AppHeader from "../components/AppHeader";
 import AccountSheet from "../components/AccountSheet";
 import BrowseFilters from "../components/BrowseFilters";
-import ItemCard from "../components/ItemCard";
+import ItemCard from "../components/Itemcard";
 import ItemDetailModal from "../components/ItemDetailModal";
 import { CATEGORIES, ITEM_STATUS, MAX_FEE } from "../lib/itemOptions";
 import "./style/browse.css";
