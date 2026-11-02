@@ -5,7 +5,7 @@ import useSession from "../hooks/useSession";
 import AppHeader from "../components/AppHeader";
 import ProfileHeader from "../components/ProfileHeader";
 import ReviewList from "../components/ReviewList";
-import ItemCard from "../components/ItemCard";
+import ItemCard from "../components/Itemcard";
 import ItemDetailModal from "../components/ItemDetailModal";
 import { ITEM_STATUS } from "../lib/itemOptions";
 import "./style/profile.css";
@@ -70,7 +70,9 @@ export default function StudentProfile() {
       <AppHeader showSearch={false} />
 
       <main className="profile-main">
-        <Link to="/browse" className="profile-back">‹ Back to browse</Link>
+        <Link to="/browse" className="profile-back">
+          ‹ Back to browse
+        </Link>
 
         {loading && <p className="profile-state">Loading...</p>}
 
@@ -91,7 +93,11 @@ export default function StudentProfile() {
             ) : (
               <div className="profile-grid">
                 {items.map((item) => (
-                  <ItemCard key={item.id} item={item} onSelect={setSelectedItem} />
+                  <ItemCard
+                    key={item.id}
+                    item={item}
+                    onSelect={setSelectedItem}
+                  />
                 ))}
               </div>
             )}
@@ -105,7 +111,12 @@ export default function StudentProfile() {
         )}
       </main>
 
-      {selectedItem && <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} />}
+      {selectedItem && (
+        <ItemDetailModal
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+        />
+      )}
     </div>
   );
 }
