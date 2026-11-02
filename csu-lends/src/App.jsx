@@ -10,6 +10,8 @@ import AdminRoute from "./components/AdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AppLayout from "./components/AppLayout";
 import Requests from "./pages/Requests";
+import Profile from "./pages/Profile";
+import StudentProfile from "./pages/StudentProfile";
 
 // Temporary page for routes you have not built yet.
 // Replace each one with the real page when it is ready.
@@ -36,6 +38,8 @@ function App() {
         />
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/students/:id" element={<StudentProfile />} />
             <Route path="/browse" element={<Browse />} />
             <Route path="/requests" element={<Requests />} />
             <Route path="/lend" element={<Lend />} />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { formatFee } from "../lib/itemOptions";
 import TrustCard from "./TrustCard";
 import "./style/requestcard.css";
@@ -25,6 +26,8 @@ export default function RequestCard({
   mode,
   onChangeStatus,
   summary,
+  myReview,
+  onRate,
 }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +38,8 @@ export default function RequestCard({
 
   const otherPerson = lending ? request.borrower : item?.owner;
   const otherName = otherPerson?.full_name || "A classmate";
+  const otherId = lending ? request.borrower_id : item?.owner_id;
+  const firstName = otherName.split(" ")[0];
 
   const change = async (newStatus, question) => {
     if (question && !window.confirm(question)) return;
@@ -67,7 +72,14 @@ export default function RequestCard({
         </div>
 
         <p className="reqcard-person">
-          {lending ? "Requested by" : "Owner:"} <strong>{otherName}</strong>
+          {lending ? "Requested by" : "Owner:"}{" "}
+          {otherId ? (
+            <Link to={`/students/${otherId}`} className="reqcard-link">
+              <strong>{otherName}</strong>
+            </Link>
+          ) : (
+            <strong>{otherName}</strong>
+          )}
           {lending && otherPerson?.program ? ` · ${otherPerson.program}` : ""}
         </p>
 
@@ -148,6 +160,27 @@ export default function RequestCard({
               {busy ? "Saving..." : "Mark as returned"}
             </button>
           )}
+
+          {request.status === "returned" &&
+            onRate &&
+            (myReview ? (
+              <div className="reqcard-rated">
+                <span>
+                  You rated {firstName} <strong>★ {myReview.rating}</strong>
+                </span>
+                <button type="button" onClick={() => onRate(request)}>
+                  Change
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="reqcard-btn reqcard-btn--rate"
+                onClick={() => onRate(request)}
+              >
+                ★ Rate {firstName}
+              </button>
+            ))}
         </div>
       </div>
     </article>

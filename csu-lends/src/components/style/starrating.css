@@ -1,0 +1,67 @@
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars-row {
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 1;
+  background: linear-gradient(
+    90deg,
+    var(--star-color, #f5a623) var(--stars-percent, 0%),
+    var(--star-off-color, #d5dbe3) var(--stars-percent, 0%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.stars--lg .stars-row {
+  font-size: 24px;
+}
+
+.stars-text {
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+.stars-text strong {
+  color: var(--primary-font-color, #12202e);
+}
+
+.stars-none {
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- Choosing a rating ---------- */
+.starinput {
+  display: flex;
+  gap: 6px;
+}
+
+.starinput button {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 14px;
+  background: var(--background-color, #ffffff);
+  color: var(--star-off-color, #d5dbe3);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.starinput button.is-on {
+  border-color: var(--star-color, #f5a623);
+  background: var(--warning-background, #fcefd0);
+  color: var(--star-color, #f5a623);
+}
+
+.starinput button:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}

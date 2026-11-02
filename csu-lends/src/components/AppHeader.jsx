@@ -2,17 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
-import "./style/appheader.css";
 import useProfile from "../hooks/useProfile";
+import "./style/appheader.css";
 
 // Top bar for pages students see after logging in.
 // Props: searchValue and onSearchChange (the Browse page owns the search text).
-export default function AppHeader({ searchValue = "", onSearchChange }) {
+export default function AppHeader({
+  searchValue = "",
+  onSearchChange,
+  showSearch = true,
+}) {
   const navigate = useNavigate();
   const { session } = useSession();
+  const { profile } = useProfile();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
-  const { profile, loading } = useProfile();
 
   const user = session?.user;
   const name = user?.user_metadata?.full_name || user?.email || "";
@@ -43,34 +47,41 @@ export default function AppHeader({ searchValue = "", onSearchChange }) {
   return (
     <header className="app-header">
       <Link to="/browse" className="app-header-brand">
-        <span className="app-header-dot">
-          <img src="/csu-icon.svg" alt="CSU icon" />
-        </span>
+        <span className="app-header-dot" />
         CSULends
       </Link>
 
-      <div className="app-header-search">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <g
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="M20 20l-4-4" />
-          </g>
-        </svg>
-        <input
-          type="search"
-          placeholder="Search rackets, calculators, books..."
-          aria-label="Search items"
-          value={searchValue}
-          onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
-        />
-      </div>
+      {showSearch ? (
+        <div className="app-header-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <g
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-4-4" />
+            </g>
+          </svg>
+          <input
+            type="search"
+            placeholder="Search rackets, calculators, books..."
+            aria-label="Search items"
+            value={searchValue}
+            onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
+          />
+        </div>
+      ) : (
+        <div className="app-header-spacer" />
+      )}
 
       <nav className="app-header-right" aria-label="Main">
+        {profile?.is_admin && (
+          <Link to="/admin" className="app-header-link">
+            Admin
+          </Link>
+        )}
         <Link to="/requests" className="app-header-link">
           Requests
         </Link>
@@ -96,14 +107,17 @@ export default function AppHeader({ searchValue = "", onSearchChange }) {
                 <strong>{user?.user_metadata?.full_name || "Student"}</strong>
                 <span>{user?.email}</span>
               </div>
-              {profile?.is_admin && (
-                <button onClick={() => (window.location.href = "/admin")}>
-                  Admin Panel
-                </button>
-              )}
+              <Link to="/profile" className="app-header-item" role="menuitem">
+                My profile
+              </Link>
               <Link to="/requests" className="app-header-item" role="menuitem">
                 My requests
               </Link>
+              {profile?.is_admin && (
+                <Link to="/admin" className="app-header-item" role="menuitem">
+                  Admin review
+                </Link>
+              )}
               <button
                 type="button"
                 className="app-header-item"

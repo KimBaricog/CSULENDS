@@ -71,3 +71,30 @@
   background: var(--success-background, #ddf4ea);
   color: var(--success-color, #17825a);
 }
+
+.trust-chip--rating {
+  background: var(--warning-background, #fcefd0);
+  color: var(--warning-color, #a8690f);
+}
+
+.trust-name--link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.trust-name--link:hover {
+  text-decoration: underline;
+}
+
+.trust-more {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--primary-color, #2557e8);
+  text-decoration: none;
+}
+
+.trust-more:hover {
+  text-decoration: underline;
+}

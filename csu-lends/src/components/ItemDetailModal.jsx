@@ -157,6 +157,7 @@ export default function ItemDetailModal({ item, onClose }) {
             role="lender"
             name={item.owner?.full_name}
             summary={lender}
+            studentId={item.owner_id}
           />
 
           <ul className="detail-facts">

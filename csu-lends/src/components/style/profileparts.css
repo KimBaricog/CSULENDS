@@ -1,0 +1,271 @@
+/* ---------- Profile header ---------- */
+.pheader {
+  display: flex;
+  gap: 22px;
+  padding: 26px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 26px;
+  background: var(--background-color, #ffffff);
+}
+
+.pheader-avatar {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.pheader-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.pheader-body h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.pheader-program {
+  margin: 2px 0 0;
+  font-size: 14.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+.pheader-bio {
+  margin: 10px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.pheader-rating {
+  margin: 14px 0 12px;
+}
+
+.pheader-body .trust-chips {
+  margin-top: 0;
+}
+
+.pheader-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* ---------- Review list ---------- */
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.review {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 18px;
+  background: var(--background-color, #ffffff);
+}
+
+.review-avatar {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-color, #d8f05a);
+  color: #12202e;
+  font-weight: 700;
+}
+
+.review-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.review-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+
+.review-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.review-name:hover {
+  text-decoration: underline;
+}
+
+.review-time {
+  flex: none;
+  font-size: 12px;
+  color: var(--muted-font-color, #667385);
+}
+
+.review-comment {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.review-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted-font-color, #667385);
+}
+
+.reviews-empty {
+  margin: 0;
+  padding: 36px 16px;
+  border: 2px dashed var(--dashed-border-color, #b9c4d2);
+  border-radius: 20px;
+  text-align: center;
+  color: var(--muted-font-color, #667385);
+}
+
+/* ---------- Edit form ---------- */
+.pform {
+  max-width: 520px;
+}
+
+.pform-field {
+  margin-bottom: 18px;
+}
+
+.pform-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pform-field label span {
+  font-weight: 400;
+  color: var(--muted-font-color, #667385);
+}
+
+.pform-field input,
+.pform-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 13px;
+  background: var(--background-color, #ffffff);
+  color: inherit;
+  font: inherit;
+  font-size: 14.5px;
+}
+
+.pform-field textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.pform-field input:focus,
+.pform-field textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #2557e8);
+  box-shadow: 0 0 0 4px rgba(37, 87, 232, 0.14);
+}
+
+.pform-hint {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: var(--muted-font-color, #667385);
+}
+
+.pform-error {
+  margin: 5px 0 0;
+  font-size: 12.5px;
+  color: var(--error-text-color, #b42318);
+}
+
+.pform-banner,
+.pform-saved {
+  margin: 0 0 16px;
+  padding: 11px 15px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pform-banner {
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+}
+
+.pform-saved {
+  background: var(--success-background, #ddf4ea);
+  color: var(--success-color, #17825a);
+}
+
+.pform-submit {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--primary-color, #2557e8);
+  color: #ffffff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pform-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.pform-submit:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .pheader {
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .pheader-avatar {
+    width: 68px;
+    height: 68px;
+    font-size: 28px;
+  }
+
+  .pheader-body h1 {
+    font-size: 24px;
+  }
+
+  /* 16px stops iPhones from zooming in when a field is tapped. */
+  .pform-field input,
+  .pform-field textarea {
+    font-size: 16px;
+  }
+}

@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import { formatFee } from "../lib/itemOptions";
 import { initialOf } from "../lib/people";
 import "./style/Itemcard.css";
 
-export default function ItemCard({ item, onSelect }) {
+// lenderSummary (optional) adds the lender's average rating next to their name.
+export default function ItemCard({ item, onSelect, lenderSummary }) {
   const free = item.fee_per_day === 0;
   const lenderName = item.owner?.full_name || "A classmate";
+  const hasRating = lenderSummary && lenderSummary.rating_count > 0;
 
   return (
     <article className="itemcard">
@@ -14,6 +17,7 @@ export default function ItemCard({ item, onSelect }) {
         aria-label={`View ${item.name}`}
         onClick={() => onSelect && onSelect(item)}
       />
+
       <div className="itemcard-photo">
         <img src={item.photo_url} alt={item.name} loading="lazy" />
       </div>
@@ -36,12 +40,21 @@ export default function ItemCard({ item, onSelect }) {
           </span>
         </div>
 
-        <p className="itemcard-owner">
+        <Link
+          to={`/students/${item.owner_id}`}
+          className="itemcard-owner"
+          aria-label={`View ${lenderName}'s profile`}
+        >
           <span className="itemcard-avatar" aria-hidden="true">
             {initialOf(lenderName)}
           </span>
           <span className="itemcard-ownername">{lenderName}</span>
-        </p>
+          {hasRating && (
+            <span className="itemcard-rating">
+              ★ {Number(lenderSummary.rating_avg).toFixed(1)}
+            </span>
+          )}
+        </Link>
         <p className="itemcard-pickup">{item.pickup_spot}</p>
       </div>
     </article>

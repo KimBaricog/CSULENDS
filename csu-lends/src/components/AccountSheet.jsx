@@ -58,6 +58,9 @@ export default function AccountSheet({ open, onClose }) {
             Admin review
           </Link>
         )}
+        <Link to="/profile" className="account-item" onClick={onClose}>
+          My profile
+        </Link>
         <Link to="/lend" className="account-item" onClick={onClose}>
           Your listings
         </Link>

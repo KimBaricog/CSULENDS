@@ -5,6 +5,7 @@ import useSession from "../hooks/useSession";
 import useStudentSummaries from "../hooks/useStudentSummaries";
 import AppHeader from "../components/AppHeader";
 import RequestCard from "../components/RequestCard";
+import RatingModal from "../components/RatingModal";
 import "./style/requests.css";
 
 const TABS = [
@@ -118,6 +119,37 @@ export default function Requests() {
     tab === "lending" ? request.borrower_id : request.item?.owner_id;
   const summaries = useStudentSummaries(requests.map(otherIdOf));
 
+  // Ratings I have already given for finished loans, and the rating popup.
+  const [myReviews, setMyReviews] = useState({});
+  const [ratingFor, setRatingFor] = useState(null);
+  const returnedIds = requests
+    .filter((r) => r.status === "returned")
+    .map((r) => r.id)
+    .join(",");
+
+  useEffect(() => {
+    if (!userId || !returnedIds) return undefined;
+    let active = true;
+    supabase
+      .from("reviews")
+      .select("id, request_id, rating, comment")
+      .eq("reviewer_id", userId)
+      .in("request_id", returnedIds.split(",").map(Number))
+      .then(({ data }) => {
+        if (!active || !data) return;
+        setMyReviews((current) => {
+          const next = { ...current };
+          data.forEach((row) => {
+            next[row.request_id] = row;
+          });
+          return next;
+        });
+      });
+    return () => {
+      active = false;
+    };
+  }, [userId, returnedIds]);
+
   // Open requests first, then finished ones.
   const sorted = useMemo(() => {
     const rank = {
@@ -209,10 +241,31 @@ export default function Requests() {
               mode={tab}
               onChangeStatus={changeStatus}
               summary={summaries[otherIdOf(request)]}
+              myReview={myReviews[request.id]}
+              onRate={setRatingFor}
             />
           ))}
         </div>
       </main>
+
+      {ratingFor && (
+        <RatingModal
+          request={ratingFor}
+          otherName={
+            (tab === "lending"
+              ? ratingFor.borrower?.full_name
+              : ratingFor.item?.owner?.full_name) || "this student"
+          }
+          role={tab === "lending" ? "borrower" : "lender"}
+          existing={myReviews[ratingFor.id] || null}
+          onClose={() => setRatingFor(null)}
+          onSaved={(row) => {
+            setMyReviews((current) => ({ ...current, [row.request_id]: row }));
+            setRatingFor(null);
+            setNotice("Thanks for rating!");
+          }}
+        />
+      )}
     </div>
   );
 }

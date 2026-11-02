@@ -1,0 +1,155 @@
+.rate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 18, 28, 0.55);
+  font-family: var(--font-family, Poppins, system-ui, -apple-system, "Segoe UI", sans-serif);
+}
+
+.rate-dialog {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 440px;
+  max-height: 100%;
+  overflow: auto;
+  padding: 26px;
+  border-radius: 26px;
+  background: var(--primary-background-color, #f6f8fa);
+  color: var(--primary-font-color, #12202e);
+}
+
+.rate-dialog h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.rate-sub {
+  margin: 6px 0 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-font-color, #667385);
+}
+
+.rate-hint {
+  min-height: 20px;
+  margin: 8px 0 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.rate-comment {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.rate-comment span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.rate-comment em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--muted-font-color, #667385);
+}
+
+.rate-comment textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border-color, #e3e8ee);
+  border-radius: 13px;
+  background: var(--background-color, #ffffff);
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.rate-comment textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #2557e8);
+  box-shadow: 0 0 0 4px rgba(37, 87, 232, 0.14);
+}
+
+.rate-note {
+  margin: 8px 0 14px;
+  font-size: 12px;
+  color: var(--muted-font-color, #667385);
+}
+
+.rate-error {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--error-background, #feeceb);
+  color: var(--error-text-color, #b42318);
+  font-size: 13.5px;
+}
+
+.rate-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rate-btn {
+  flex: 1;
+  height: 48px;
+  border: 0;
+  border-radius: 13px;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rate-btn--primary {
+  background: var(--primary-color, #2557e8);
+  color: #ffffff;
+}
+
+.rate-btn--plain {
+  background: var(--surface-color, #eef1f5);
+  color: inherit;
+}
+
+.rate-btn:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .rate-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .rate-dialog {
+    border-radius: 24px 24px 0 0;
+    padding: 22px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .rate-comment textarea {
+    font-size: 16px; /* stops iPhones from zooming in when the field is tapped */
+  }
+
+  .starinput {
+    justify-content: space-between;
+  }
+
+  .starinput button {
+    flex: 1;
+    max-width: 56px;
+  }
+}

@@ -157,6 +157,48 @@
   outline-offset: 2px;
 }
 
+.reqcard-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.reqcard-link:hover {
+  text-decoration: underline;
+}
+
+.reqcard-btn--rate {
+  background: var(--warning-background, #fcefd0);
+  color: var(--warning-color, #a8690f);
+}
+
+.reqcard-rated {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--muted-font-color, #667385);
+}
+
+.reqcard-rated strong {
+  color: var(--warning-color, #a8690f);
+}
+
+.reqcard-rated button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--primary-color, #2557e8);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reqcard-rated button:focus-visible {
+  outline: 3px solid var(--primary-color, #2557e8);
+  outline-offset: 2px;
+}
+
 /* Phones: keep the photo beside the details, like the app design. */
 @media (max-width: 560px) {
   .reqcard {

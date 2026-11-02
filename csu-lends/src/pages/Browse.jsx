@@ -2,10 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
+import useStudentSummaries from "../hooks/useStudentSummaries";
 import AppHeader from "../components/AppHeader";
 import AccountSheet from "../components/AccountSheet";
 import BrowseFilters from "../components/BrowseFilters";
-import ItemCard from "../components/Itemcard";
+import ItemCard from "../components/ItemCard";
 import ItemDetailModal from "../components/ItemDetailModal";
 import { CATEGORIES, ITEM_STATUS, MAX_FEE } from "../lib/itemOptions";
 import "./style/browse.css";
@@ -42,6 +43,10 @@ export default function Browse() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const lenderSummaries = useStudentSummaries(
+    items.map((item) => item.owner_id),
+  );
 
   const displayName =
     session?.user?.user_metadata?.full_name || session?.user?.email || "";
@@ -276,7 +281,12 @@ export default function Browse() {
 
           <div className="browse-grid">
             {visibleItems.map((item) => (
-              <ItemCard key={item.id} item={item} onSelect={setSelectedItem} />
+              <ItemCard
+                key={item.id}
+                item={item}
+                onSelect={setSelectedItem}
+                lenderSummary={lenderSummaries[item.owner_id]}
+              />
             ))}
           </div>
         </section>
