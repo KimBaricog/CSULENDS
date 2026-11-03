@@ -68,6 +68,12 @@
   cursor: pointer;
 }
 
+.adminoverview-alert--verify {
+  border-color: #b8c9fa;
+  background: var(--tint-blue, #dce6ff);
+  color: var(--primary-color, #2557e8);
+}
+
 .adminoverview-cta:focus-visible,
 .adminoverview-alert:focus-visible {
   outline: 3px solid var(--primary-color, #2557e8);

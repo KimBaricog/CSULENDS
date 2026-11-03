@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatFee } from "../lib/itemOptions";
 import { initialOf } from "../lib/people";
+import VerifiedBadge from "./VerifiedBadge";
 import "./style/Itemcard.css";
 
 // lenderSummary (optional) adds the lender's average rating next to their name.
@@ -49,6 +50,7 @@ export default function ItemCard({ item, onSelect, lenderSummary }) {
             {initialOf(lenderName)}
           </span>
           <span className="itemcard-ownername">{lenderName}</span>
+          {lenderSummary?.is_verified && <VerifiedBadge size="sm" />}
           {hasRating && (
             <span className="itemcard-rating">
               ★ {Number(lenderSummary.rating_avg).toFixed(1)}

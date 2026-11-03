@@ -98,3 +98,13 @@
 .trust-more:hover {
   text-decoration: underline;
 }
+
+.trust-namerow {
+  display: flex;
+  align-items: center;
+}
+
+.trust-chip--verified {
+  background: var(--tint-blue, #dce6ff);
+  color: var(--primary-color, #2557e8);
+}

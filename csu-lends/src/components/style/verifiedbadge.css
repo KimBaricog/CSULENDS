@@ -1,0 +1,40 @@
+.vbadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--primary-color, #2557e8);
+  color: #ffffff;
+  vertical-align: middle;
+}
+
+.vbadge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.vbadge--sm {
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
+}
+
+.vbadge--sm svg {
+  width: 11px;
+  height: 11px;
+}
+
+.vbadge--lg {
+  width: 26px;
+  height: 26px;
+  margin-left: 10px;
+}
+
+.vbadge--lg svg {
+  width: 20px;
+  height: 20px;
+}

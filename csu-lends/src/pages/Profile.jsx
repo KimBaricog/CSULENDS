@@ -7,12 +7,14 @@ import ProfileHeader from "../components/ProfileHeader";
 import EditProfileForm from "../components/EditProfileForm";
 import MyListings from "../components/MyListings";
 import ReviewList from "../components/ReviewList";
+import VerificationPanel from "../components/VerificationPanel";
 import "./style/profile.css";
 
 const TABS = [
   { key: "lends", label: "My lends" },
   { key: "ratings", label: "Ratings" },
   { key: "edit", label: "Edit profile" },
+  { key: "verify", label: "Verification" },
 ];
 
 const REVIEW_COLUMNS =
@@ -22,7 +24,8 @@ const REVIEW_COLUMNS =
 export default function Profile() {
   const { session } = useSession();
   const userId = session?.user?.id;
-  const fallbackName = session?.user?.user_metadata?.full_name || session?.user?.email;
+  const fallbackName =
+    session?.user?.user_metadata?.full_name || session?.user?.email;
 
   const [tab, setTab] = useState("lends");
   const [summary, setSummary] = useState(null);
@@ -31,10 +34,14 @@ export default function Profile() {
 
   const loadSummary = useCallback(async () => {
     if (!userId) return;
-    const { data, error } = await supabase.rpc("student_summaries", { uids: [userId] });
+    const { data, error } = await supabase.rpc("student_summaries", {
+      uids: [userId],
+    });
     if (error) {
       console.error("Could not load profile:", error);
-      setLoadError("Could not load your profile details. Make sure csulends_profiles_ratings.sql has been run.");
+      setLoadError(
+        "Could not load your profile details. Make sure csulends_profiles_ratings.sql has been run.",
+      );
       return;
     }
     setLoadError("");
@@ -67,22 +74,45 @@ export default function Profile() {
       <AppHeader showSearch={false} />
 
       <main className="profile-main">
-        {loadError && <p className="profile-error" role="alert">{loadError}</p>}
+        {loadError && (
+          <p className="profile-error" role="alert">
+            {loadError}
+          </p>
+        )}
 
         <ProfileHeader
           summary={summary}
           fallbackName={fallbackName}
           actions={
             <>
-              <button type="button" className="profile-btn profile-btn--primary" onClick={() => setTab("edit")}>
+              <button
+                type="button"
+                className="profile-btn profile-btn--primary"
+                onClick={() => setTab("edit")}
+              >
                 Edit profile
               </button>
-              <Link to="/lend" className="profile-btn profile-btn--outline">+ Lend an item</Link>
+              <Link to="/lend" className="profile-btn profile-btn--outline">
+                + Lend an item
+              </Link>
+              {summary && !summary.is_verified && (
+                <button
+                  type="button"
+                  className="profile-btn profile-btn--outline"
+                  onClick={() => setTab("verify")}
+                >
+                  Get verified
+                </button>
+              )}
             </>
           }
         />
 
-        <nav className="profile-tabs" role="tablist" aria-label="Profile sections">
+        <nav
+          className="profile-tabs"
+          role="tablist"
+          aria-label="Profile sections"
+        >
           {TABS.map((t) => (
             <button
               key={t.key}
@@ -93,7 +123,12 @@ export default function Profile() {
               onClick={() => setTab(t.key)}
             >
               {t.label}
-              {t.key === "ratings" && summary?.rating_count > 0 && <span className="profile-count">{summary.rating_count}</span>}
+              {t.key === "ratings" && summary?.rating_count > 0 && (
+                <span className="profile-count">{summary.rating_count}</span>
+              )}
+              {t.key === "verify" && summary && !summary.is_verified && (
+                <span className="profile-dot" aria-label="Not verified yet" />
+              )}
             </button>
           ))}
         </nav>
@@ -101,7 +136,8 @@ export default function Profile() {
         {tab === "lends" && (
           <section>
             <p className="profile-note">
-              This is everything you have shared. Other students see only the items an admin has approved.
+              This is everything you have shared. Other students see only the
+              items an admin has approved.
             </p>
             <MyListings />
           </section>
@@ -110,16 +146,34 @@ export default function Profile() {
         {tab === "ratings" && (
           <section>
             <p className="profile-note">
-              After a loan is marked as returned, you and the other student can each rate each other from the
-              Requests page.
+              After a loan is marked as returned, you and the other student can
+              each rate each other from the Requests page.
             </p>
-            <ReviewList reviews={reviews} emptyText="No one has rated you yet. Ratings appear after your first completed loan." />
+            <ReviewList
+              reviews={reviews}
+              emptyText="No one has rated you yet. Ratings appear after your first completed loan."
+            />
+          </section>
+        )}
+
+        {tab === "verify" && (
+          <section>
+            <VerificationPanel
+              userId={userId}
+              isVerified={Boolean(summary?.is_verified)}
+              onChanged={loadSummary}
+            />
           </section>
         )}
 
         {tab === "edit" && (
           <section>
-            <EditProfileForm userId={userId} summary={summary} onSaved={loadSummary} key={summary?.id || "new"} />
+            <EditProfileForm
+              userId={userId}
+              summary={summary}
+              onSaved={loadSummary}
+              key={summary?.id || "new"}
+            />
           </section>
         )}
       </main>

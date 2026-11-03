@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { initialOf, memberSince } from "../lib/people";
+import VerifiedBadge from "./VerifiedBadge";
 import "./style/trustcard.css";
 
 const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
@@ -28,6 +29,8 @@ export default function TrustCard({
           }
         : { text: "No ratings yet" },
     );
+    if (summary.is_verified)
+      chips.push({ text: "Verified student", verified: true });
     if (summary.email_verified)
       chips.push({ text: "Email verified", good: true });
     chips.push({ text: `Member since ${memberSince(summary.member_since)}` });
@@ -61,7 +64,7 @@ export default function TrustCard({
       {chips.map((chip) => (
         <li
           key={chip.text}
-          className={`trust-chip ${chip.good ? "trust-chip--good" : ""} ${chip.rating ? "trust-chip--rating" : ""}`}
+          className={`trust-chip ${chip.good ? "trust-chip--good" : ""} ${chip.rating ? "trust-chip--rating" : ""} ${chip.verified ? "trust-chip--verified" : ""}`}
         >
           {chip.text}
         </li>
@@ -80,16 +83,19 @@ export default function TrustCard({
         <span className="trust-role">
           {role === "lender" ? "Lender" : "Borrower"}
         </span>
-        {studentId ? (
-          <Link
-            to={`/students/${studentId}`}
-            className="trust-name trust-name--link"
-          >
-            {shownName}
-          </Link>
-        ) : (
-          <strong className="trust-name">{shownName}</strong>
-        )}
+        <span className="trust-namerow">
+          {studentId ? (
+            <Link
+              to={`/students/${studentId}`}
+              className="trust-name trust-name--link"
+            >
+              {shownName}
+            </Link>
+          ) : (
+            <strong className="trust-name">{shownName}</strong>
+          )}
+          {summary?.is_verified && <VerifiedBadge size="sm" />}
+        </span>
         {shownProgram && <span className="trust-program">{shownProgram}</span>}
         {chipList}
         {studentId && (

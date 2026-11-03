@@ -5,6 +5,7 @@ import AdminOverview from "../components/AdminOverview";
 import AdminReview from "../components/AdminReview";
 import AdminUsers from "../components/AdminUsers";
 import AdminIssues from "../components/AdminIssues";
+import AdminVerifications from "../components/AdminVerifications";
 import { buildChecks, countIssues } from "../lib/adminChecks";
 import "./style/adminpanel.css";
 import "../components/style/admindashboard.css";
@@ -14,6 +15,7 @@ const REFRESH_MS = 30000;
 const SECTIONS = [
   { key: "overview", label: "Overview" },
   { key: "review", label: "Review" },
+  { key: "verify", label: "Verify" },
   { key: "users", label: "Users" },
   { key: "issues", label: "Issues" },
 ];
@@ -24,6 +26,7 @@ export default function AdminPanel() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [updatedAt, setUpdatedAt] = useState(null);
+  const [verifyPending, setVerifyPending] = useState(0);
 
   const loadStats = useCallback(async () => {
     const { data, error: rpcError } = await supabase.rpc("admin_dashboard");
@@ -39,6 +42,12 @@ export default function AdminPanel() {
       setError("");
       setUpdatedAt(new Date());
     }
+    // How many students are waiting to be verified (0 if verification is not set up yet).
+    const { count } = await supabase
+      .from("verification_requests")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "pending");
+    setVerifyPending(count ?? 0);
     setLoading(false);
   }, []);
 
@@ -59,6 +68,8 @@ export default function AdminPanel() {
     if (!stats) return null;
     if (key === "review" && stats.items.pending > 0)
       return { value: stats.items.pending, tone: "" };
+    if (key === "verify" && verifyPending > 0)
+      return { value: verifyPending, tone: "" };
     if (key === "issues" && issueCount > 0)
       return { value: issueCount, tone: hasProblem ? "problem" : "warn" };
     return null;
@@ -129,6 +140,8 @@ export default function AdminPanel() {
                 stats={stats}
                 issueCount={issueCount}
                 onGoReview={() => setSection("review")}
+                verifyPending={verifyPending}
+                onGoVerify={() => setSection("verify")}
                 onGoIssues={() => setSection("issues")}
               />
             )}
@@ -136,6 +149,7 @@ export default function AdminPanel() {
         )}
 
         {section === "review" && <AdminReview onChanged={loadStats} />}
+        {section === "verify" && <AdminVerifications onChanged={loadStats} />}
         {section === "users" && <AdminUsers />}
         {section === "issues" &&
           (stats ? (

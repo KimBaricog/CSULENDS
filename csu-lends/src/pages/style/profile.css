@@ -2,7 +2,14 @@
   min-height: 100vh;
   background: var(--primary-background-color, #f6f8fa);
   color: var(--primary-font-color, #12202e);
-  font-family: var(--font-family, Poppins, system-ui, -apple-system, "Segoe UI", sans-serif);
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
 }
 
 .profile-main {
@@ -150,4 +157,12 @@
   .profile-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Small dot on the Verification tab while a student is not verified yet. */
+.profile-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--error-color, #d92d20);
 }

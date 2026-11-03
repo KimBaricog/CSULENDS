@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
 import useProfile from "../hooks/useProfile";
+import VerifiedBadge from "./VerifiedBadge";
 import "./style/accountsheet.css";
 
 // Account menu that slides up from the bottom on phones.
-export default function AccountSheet({ open, onClose }) {
+export default function AccountSheet({ open, onClose, summary }) {
   const navigate = useNavigate();
   const { session } = useSession();
   const { profile } = useProfile();
@@ -48,6 +49,7 @@ export default function AccountSheet({ open, onClose }) {
           </span>
           <div>
             <strong>{name}</strong>
+            <span>{summary?.is_verified && <VerifiedBadge size="sm" />}</span>
             <span>{user?.email}</span>
             {profile?.program && <small>{profile.program}</small>}
           </div>
