@@ -5,6 +5,8 @@ import useSession from "../hooks/useSession";
 import useProfile from "../hooks/useProfile";
 import "./style/appheader.css";
 
+const csulendsLogo = "/csu-icon.svg";
+
 // Top bar for pages students see after logging in.
 // Props: searchValue and onSearchChange (the Browse page owns the search text).
 export default function AppHeader({
@@ -47,7 +49,9 @@ export default function AppHeader({
   return (
     <header className="app-header">
       <Link to="/browse" className="app-header-brand">
-        <span className="app-header-dot" />
+        <span className="app-header-dot">
+          <img src={csulendsLogo}></img>
+        </span>
         CSULends
       </Link>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
-import AppHeader from "../components/Header";
+import AppHeader from "../components/AppHeader";
 import MyListings from "../components/MyListings";
 import {
   CATEGORIES,
@@ -161,6 +161,7 @@ export default function Lend() {
 
   return (
     <div className="lend-page">
+      <AppHeader showSearch={false} />
       <main className="lend-layout">
         <section className="lend-main">
           {submitted ? (
@@ -396,6 +397,7 @@ export default function Lend() {
             <h2>How review works</h2>
             <ol>
               <li>You submit your item with a photo.</li>
+
               <li>
                 An admin checks that it is appropriate and the photo is clear.
               </li>

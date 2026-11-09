@@ -1,6 +1,7 @@
 import { initialOf, memberSince } from "../lib/people";
 import StarRating from "./StarRating";
 import VerifiedBadge from "./VerifiedBadge";
+import useSession from "../hooks/useSession";
 import "./style/trustcard.css";
 import "./style/profileparts.css";
 
@@ -11,7 +12,9 @@ const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 export default function ProfileHeader({ summary, fallbackName, actions }) {
   const name = summary?.full_name || fallbackName || "Student";
   const hasRatings = summary && summary.rating_count > 0;
+  const { session } = useSession();
 
+  const user = session?.user;
   return (
     <section className="pheader">
       <span className="pheader-avatar" aria-hidden="true">

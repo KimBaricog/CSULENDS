@@ -30,10 +30,6 @@ export default function useProfile() {
         .eq("id", userId)
         .maybeSingle();
 
-      console.log("Logged-in user ID:", userId);
-      console.log("Fetched profile:", data);
-      console.log("Profile query error:", error);
-
       if (active) {
         setProfile(data);
         setLoading(false);
