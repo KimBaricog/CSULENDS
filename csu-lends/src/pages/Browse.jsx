@@ -9,6 +9,7 @@ import BrowseFilters from "../components/BrowseFilters";
 import ItemCard from "../components/Itemcard";
 import ItemDetailModal from "../components/ItemDetailModal";
 import { CATEGORIES, ITEM_STATUS, MAX_FEE } from "../lib/itemOptions";
+import BrowseSkeletal from "../components/skeletal-loading/BrowseSkeletal";
 import "./style/browse.css";
 
 const LOAD_LIMIT = 200;
@@ -172,9 +173,11 @@ export default function Browse() {
               <span className="browse-eyebrow">Caraga State University</span>
               <h1>What do you need?</h1>
               <p>
-                {loading
-                  ? "Loading items..."
-                  : `${visibleItems.length} ${visibleItems.length === 1 ? "item" : "items"} shared by students at Caraga State University`}
+                {loading ? (
+                  <BrowseSkeletal BrowserText={true} />
+                ) : (
+                  `${visibleItems.length} ${visibleItems.length === 1 ? "item" : "items"} shared by students at Caraga State University`
+                )}
               </p>
             </div>
 

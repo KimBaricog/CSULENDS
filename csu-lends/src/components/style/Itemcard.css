@@ -147,7 +147,7 @@
 /* ---------- Phones: compact cards, two per row (as in the app design) ---------- */
 @media (max-width: 900px) {
   .itemcard {
-    border-radius: 18px;
+    border-radius: 5px;
   }
 
   .itemcard-hit {
@@ -156,7 +156,7 @@
 
   .itemcard-photo {
     margin: 8px 8px 0;
-    border-radius: 12px;
+    border-radius: 3px;
   }
 
   .itemcard-body {

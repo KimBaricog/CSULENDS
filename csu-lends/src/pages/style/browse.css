@@ -2,7 +2,14 @@
   min-height: 100vh;
   background: var(--primary-background-color, #f6f8fa);
   color: var(--primary-font-color, #12202e);
-  font-family: var(--font-family, Poppins, system-ui, -apple-system, "Segoe UI", sans-serif);
+  font-family: var(
+    --font-family,
+    Poppins,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
 }
 
 .browse-layout {
@@ -179,11 +186,19 @@
     margin-bottom: 14px;
   }
 
-  .browse-mobile-search { order: 2; }
-  .browse-chips { order: 3; }
-  .browse-controls { order: 4; }
+  .browse-mobile-search {
+    order: 2;
+  }
+  .browse-chips {
+    order: 3;
+  }
+  .browse-controls {
+    order: 4;
+  }
   .browse-state,
-  .browse-grid { order: 5; }
+  .browse-grid {
+    order: 5;
+  }
 
   .browse-eyebrow {
     display: block;
@@ -268,7 +283,7 @@
     flex: none;
     padding: 7px 16px;
     border: 1px solid var(--border-color, #e3e8ee);
-    border-radius: 22px;
+    border-radius: 10px;
     background: var(--background-color, #ffffff);
     color: inherit;
     font: inherit;
@@ -298,7 +313,7 @@
 
   .browse-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 10px;
   }
 
   /* Filters open as a sheet from the bottom. */

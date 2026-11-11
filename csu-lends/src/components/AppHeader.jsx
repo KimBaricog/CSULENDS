@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import useSession from "../hooks/useSession";
 import useProfile from "../hooks/useProfile";
+import VerifiedBadge from "./VerifiedBadge";
 import "./style/appheader.css";
 
 const csulendsLogo = "/csu-icon.svg";
@@ -21,7 +22,8 @@ export default function AppHeader({
   const menuRef = useRef(null);
 
   const user = session?.user;
-  const name = user?.user_metadata?.full_name || user?.email || "";
+  const name =
+    user?.user_metadata?.full_name || user?.email || user?.is_verified || "";
   const initial = name ? name.trim()[0].toUpperCase() : "?";
 
   // Close the menu when clicking outside it or pressing Escape.
@@ -109,6 +111,9 @@ export default function AppHeader({
             <div className="app-header-dropdown" role="menu">
               <div className="app-header-user">
                 <strong>{user?.user_metadata?.full_name || "Student"}</strong>
+                <span>
+                  {profile?.is_verified && <VerifiedBadge size="sm" />}
+                </span>
                 <span>{user?.email}</span>
               </div>
               <Link to="/profile" className="app-header-item" role="menuitem">
