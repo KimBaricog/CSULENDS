@@ -133,6 +133,12 @@
 }
 
 /* ---------- Request form ---------- */
+.detail-dates {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
 
 .detail-dates label,
 .detail-message {
@@ -310,8 +316,11 @@
   }
 
   /* 16px stops iPhones from zooming in when a field is tapped. */
-  .detail-dates input,
+
   .detail-message textarea {
     font-size: 16px;
+  }
+  .detail-dates input {
+    max-width: 98%;
   }
 }
