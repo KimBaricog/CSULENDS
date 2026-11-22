@@ -22,6 +22,26 @@
   height: 100%;
   object-fit: cover;
 }
+.image-preview {
+  z-index: 999;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #09090aed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview img {
+  width: 40%;
+  height: auto;
+  margin: 10px;
+}
 
 .itemcard-body {
   display: flex;

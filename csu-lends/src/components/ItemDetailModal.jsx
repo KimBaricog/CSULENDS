@@ -56,6 +56,7 @@ export default function ItemDetailModal({ item, onClose }) {
   const isOwner = item.owner_id === userId;
   const loanDays = Math.max(1, daysBetween(start, end));
   const total = item.fee_per_day * loanDays;
+  const [previewimg, setpreview] = useState(false);
 
   // Escape closes the popup, the page behind it stops scrolling, and focus moves inside.
   useEffect(() => {
@@ -114,6 +115,13 @@ export default function ItemDetailModal({ item, onClose }) {
     setSent(true);
   };
 
+  const handleImagepreview = () => {
+    setpreview(true);
+  };
+
+  const closeImgPreview = () => {
+    setpreview(false);
+  };
   return (
     <div
       className="detail-overlay"
@@ -135,7 +143,17 @@ export default function ItemDetailModal({ item, onClose }) {
           ×
         </button>
 
-        <div className="detail-photo">
+        <div className="detail-photo" onClick={handleImagepreview}>
+          <img src={item.photo_url} alt={item.name} />
+        </div>
+
+        <div
+          className="image-preview"
+          style={{ display: previewimg ? "flex" : "none" }}
+        >
+          <button onClick={closeImgPreview} id="img-close">
+            x
+          </button>
           <img src={item.photo_url} alt={item.name} />
         </div>
 
