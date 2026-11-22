@@ -7,7 +7,7 @@ import "./style/signup.css";
 
 // Put your school's email ending here once you have confirmed it,
 // for example "@yourschool.edu.ph". Leave it empty to skip the check.
-const SCHOOL_EMAIL_DOMAIN = "";
+const SCHOOL_EMAIL_DOMAIN = "@carsu.edu.ph";
 const MIN_PASSWORD_LENGTH = 8;
 
 export default function Signup() {

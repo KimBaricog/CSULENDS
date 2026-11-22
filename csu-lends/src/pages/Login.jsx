@@ -6,7 +6,7 @@ import "./style/login.css";
 
 // Put your school's email ending here once you have confirmed it,
 // for example "@yourschool.edu.ph". Leave it empty to skip the check.
-const SCHOOL_EMAIL_DOMAIN = "@gmail.com";
+const SCHOOL_EMAIL_DOMAIN = "";
 
 export default function Login() {
   const navigate = useNavigate();

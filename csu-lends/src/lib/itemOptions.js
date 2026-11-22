@@ -6,9 +6,12 @@ export const CATEGORIES = ["Sports", "Tech", "Books", "Other"];
 export const CONDITIONS = ["Like new", "Good", "Worn"];
 export const PICKUP_SPOTS = [
   "Library lobby",
-  "Student center",
+  "Hiraya",
+  "Masawa",
+  "Batok hall",
   "Main gate",
-  "Canteen",
+  "Green gate",
+  "CSU field",
 ];
 export const MAX_DAYS_OPTIONS = [1, 2, 3, 5, 7];
 export const FEE_PRESETS = [0, 10, 20, 50];

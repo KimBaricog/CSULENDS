@@ -322,5 +322,7 @@
   }
   .detail-dates {
     overflow: hidden;
+    gap: 10px;
+    width: 95%;
   }
 }
