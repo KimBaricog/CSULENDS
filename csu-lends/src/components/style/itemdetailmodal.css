@@ -320,7 +320,7 @@
   .detail-message textarea {
     font-size: 16px;
   }
-  .detail-dates input {
-    max-width: 98%;
+  .detail-dates {
+    overflow: hidden;
   }
 }
