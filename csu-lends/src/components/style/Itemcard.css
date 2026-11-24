@@ -38,7 +38,7 @@
 }
 
 .image-preview img {
-  width: 40%;
+  width: 10%;
   height: auto;
   margin: 10px;
 }
@@ -227,4 +227,7 @@
   outline: 3px solid var(--primary-color, #2557e8);
   outline-offset: 2px;
   border-radius: 8px;
+}
+.image-preview img {
+  width: 95%;
 }
