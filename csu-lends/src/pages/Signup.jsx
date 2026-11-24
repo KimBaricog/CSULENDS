@@ -4,6 +4,7 @@ import { supabase } from "../lib/supabase";
 import Visual from "../components/Visual";
 import "./style/login.css"; // shared page, form and picture panel styles
 import "./style/signup.css";
+import Maintenance from "../components/maintenance";
 
 // Put your school's email ending here once you have confirmed it,
 // for example "@yourschool.edu.ph". Leave it empty to skip the check.
@@ -136,6 +137,7 @@ export default function Signup() {
 
       <main className="login-split">
         <section className="login-form-side">
+          {/* 
           {sentTo ? (
             <div className="login-form signup-inbox">
               <div className="signup-mail" aria-hidden="true">
@@ -312,6 +314,8 @@ export default function Signup() {
               </button>
 
               <p className="login-lock">or</p>
+
+              
               <button
                 type="button"
                 onClick={handleGoogleLogin}
@@ -335,6 +339,32 @@ export default function Signup() {
               <p className="login-lock">Only for verified CSU students</p>
             </form>
           )}
+            */}
+
+          <div className="login-form signup-inbox">
+            <Maintenance />
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="google-login-button"
+            >
+              <img
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                alt=""
+                width="20"
+                height="20"
+              />
+              Continue with Google
+            </button>
+
+            <p className="login-foot">
+              Already have an account?{" "}
+              <Link to="/login" className="login-link">
+                Log in
+              </Link>
+            </p>
+            <p className="login-lock">Only for verified CSU students</p>
+          </div>
         </section>
 
         <Visual />
